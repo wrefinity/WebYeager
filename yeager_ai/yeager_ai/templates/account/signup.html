@@ -1,0 +1,222 @@
+{% extends "base.html" %} 
+{% load static  slippers i18n %}
+{% block content %}
+
+<div class="d-flex flex-column flex-root">
+    <!--begin::Authentication - Sign-up -->
+    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+      <!--begin::Body-->
+      <div class="d-flex flex-column  flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
+        <!--begin::Form-->
+        <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+          <!--begin::Wrapper-->
+          <div class=" card col-md-5 p-10">
+            <!--begin::Form-->
+            {% block messages %}
+            {% if messages %}
+            {% for message in messages %}
+            {{messages}}
+            {% endfor %}
+            {% endif %}
+            {% endblock messages %}
+            <form
+              class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+              method="post" action="{% url 'account_signup' %}"> 
+              {% csrf_token %}
+ 
+              {% comment %} action="{% url 'users:register' %}"> {% endcomment %}
+              
+              <!--begin::Heading-->
+              <div class="text-center mb-11">
+                <image src="{%  static 'assets/media/logos/yeager.png' %}">
+                <!--begin::Title-->
+                <h1 class="text-dark fw-bolder mb-3">Create Your Account</h1>
+                <!--end::Title-->
+  
+                <!--begin::Subtitle-->
+                {% comment %} <div class="text-gray-500 fw-semibold fs-6">
+                  Your Social Campaigns
+                </div> {% endcomment %}
+                <!--end::Subtitle-->
+              </div>
+
+              {% if form.errors %}
+              <div class="alert alert-dismissible alert-danger">
+                {% comment %} {{ message }} {% endcomment %}
+                {{form.errors}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endif %}
+
+              <!--end::Input group-->
+              <div class="row mb-6">
+                <div class="col-md-6">
+                  <!--begin::FirstName-->
+                  {% comment %} <input
+                    type="text"
+                    placeholder="First Name"
+                    name="first_name"
+                    autocomplete="off"
+                    class="form-control bg-transparent"
+                  /> {% endcomment %}
+                  {{form.first_name}}
+                  <!--end::FirstName-->
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                  <!--begin::LastName-->
+                </div>
+                <div class="col-md-6">
+                  {{form.last_name}}
+                  <!--end::LastName-->
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+              <!--end::Input group-->
+
+              <!--begin::Input group-->
+              <div class="fv-row mb-8 fv-plugins-icon-container">
+                <!--begin::Email-->
+                {{form.email}}
+                <!--end::Email-->
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+  
+              <!--begin::Input group-->
+              <div
+                class="fv-row mb-8 fv-plugins-icon-container"
+                data-kt-password-meter="true">
+                <!--begin::Wrapper-->
+                <div class="mb-1">
+                  <!--begin::Input wrapper-->
+                  <div class="position-relative mb-3">
+                    {{form.password1}} 
+                    <span
+                      class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+                      data-kt-password-meter-control="visibility"
+                    >
+                      <i class="ki-duotone ki-eye-slash fs-2"></i>
+                      <i class="ki-duotone ki-eye fs-2 d-none"></i>
+                    </span>
+                  </div>
+                  <!--end::Input wrapper-->
+
+                </div>
+                <!--end::Wrapper-->
+
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+  
+              <!--begin::Submit button-->
+              <div class="d-grid mb-11">
+                <button
+                  type="submit" 
+                  class="btn btn-primary"
+                  >
+                  {% trans "Sign Up" %} &raquo;
+              </button>
+              </div>
+              <!--end::Submit button-->
+  
+
+
+            </form>
+            <!--end::Form-->
+
+            <!--begin::Sign up-->
+            <div class="text-gray-500 text-center fw-semibold fs-6 mb-11">
+              Already have an Account?
+
+              <a
+                href="{{ login_url }}"
+                class="link-primary fw-semibold"
+              >
+                Sign in
+              </a>
+            </div>
+            <!--end::Sign up-->
+
+            <!--begin::Separator-->
+            <div class="separator separator-content mb-14">
+              <span class="w-125px text-gray-500 fw-semibold fs-7"
+                >Or </span
+              >
+            </div>
+            <!--end::Separator-->
+              
+            <!--begin::Heading-->
+            {% if socialaccount_providers %}
+            {% if ACCOUNT_ALLOW_REGISTRATION %}
+            <div class="text-center justify-content-center align-item-center mb-11">
+              <!--begin::Title-->
+              <h1 class="text-dark fw-bolder mb-3">Sign Up</h1>
+              <!--end::Title-->
+
+              <!--begin::Subtitle-->
+              <div class="text-gray-500 fw-semibold fs-6">
+                Your Social Campaigns
+              </div>
+              <!--end::Subtitle-->
+            </div>
+            {% endif %}
+            {% include "socialaccount/snippets/login_extra.html" %}
+            {% endif %}
+      
+            <!--begin::Heading-->
+
+            <!--begin::Login options-->
+            <div class="row g-3 mb-9">
+              {% comment %} do oauth here  {% endcomment %}
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+            </div>
+             
+            
+            <!--begin::Accept-->
+            <div class="text-gray-500 text-center fw-semibold fs-6">
+    
+            
+              By clicking on continue you  agree to our
+              <a href="#" target="_blank"
+              >Terms of Use</a>
+    
+              and acknowledge our <a href="#" target="_blank"
+              >Privacy Policy</a>
+    
+            </div>
+            <!--end::Accept-->
+          </div>
+          <!--end::Wrapper-->
+        </div>
+        <!--end::Form-->
+  
+        
+        <!--begin::Footer-->
+        <div class="text-center px-10 mx-auto mt-11">
+
+          <!--begin::Links-->
+          <div class="d-flex fw-semibold text-primary fs-base gap-5">
+            <a href="#" target="_blank"
+              >Terms of Use</a
+            >
+  
+            <a
+              href="#"
+              target="_blank"
+              >Privacy Plan</a
+            >
+  
+          </div>
+          <!--end::Links-->
+        </div>
+        <!--end::Footer-->
+      </div>
+      <!--end::Body-->
+  
+    </div>
+    <!--end::Authentication - Sign-up-->
+  </div>
+
+{% endblock content %}

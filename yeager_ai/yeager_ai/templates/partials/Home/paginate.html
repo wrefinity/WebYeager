@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="d-flex flex-stack flex-wrap px-10">
+  <div class="fs-6 fw-semibold text-gray-700">
+    {% if paginator.count > 0 %}
+      Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ paginator.count }} entries
+    {% else %}
+      Showing 0 entries
+    {% endif %}
+  </div>
+
+  <!-- Pagination links -->
+  <ul class="pagination">
+    <!-- Previous page link -->
+    {% if page_obj.has_previous %}
+      <li class="page-item previous">
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="page-link"><i class="previous"></i></a>
+      </li>
+    {% endif %}
+
+    <!-- Page links -->
+    {% for page in paginator.page_range %}
+      {% if page == page_obj.number %}
+        <li class="page-item active">
+          <a href="#" class="page-link">{{ page }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a href="{{ request.path }}?page={{ page }}" class="page-link">{{ page }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    <!-- Next page link -->
+    {% if page_obj.has_next %}
+      <li class="page-item next">
+        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="page-link"><i class="next"></i></a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

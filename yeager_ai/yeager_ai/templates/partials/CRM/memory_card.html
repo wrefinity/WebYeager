@@ -1,0 +1,50 @@
+{% load static %}
+
+
+
+<div class="col-md-6 col-xl-4">
+  <div
+    class="card border-hover-primary border border-gray-500 border-dashed rounded"
+  >
+    {% comment %}
+    <a href="{% url 'world_details' %}">
+      {% endcomment %}
+
+
+      <!--begin:: Card body-->
+      <div class="card-body p-9">
+        <!--begin::Name-->
+        <div class="fs-3 fw-bold text-dark mb-3">{{name}}</div>
+        <!--end::Name-->
+
+
+        <tbody>
+
+          {% for mem in data.memories.all %}
+          <tr>
+            
+            <td>
+              <span class="text-dark fw-bold text-hover-primary mb-2 fs-6"
+                >{{mem.name}}</span
+              >
+      
+
+              <span class="text-muted fw-semibold mb-2 d-block fs-7"
+                >{{mem.description}}</span>
+            </td>
+          </tr>
+          {% endfor %}
+  
+  
+        </tbody>
+      
+      </div>
+      <!--end:: Card body-->
+      {% comment %}
+    </a>
+    {% endcomment %}
+  </div>
+
+  <!--begin::Card-->
+  <!--end::Card-->
+</div>

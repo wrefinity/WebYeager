@@ -1,0 +1,236 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+
+{% comment %} <div class="content d-flex flex-column flex-column-fluid" id="kt_content"> {% endcomment %}
+
+{% comment %} {% #aside %}
+{% /aside %}
+
+{% #sign-in %}
+{% /sign-in %}
+
+{% #sign-up %}
+{% /sign-up %}
+
+{% #two_factor %}
+{% /two_factor %}
+
+ {% #new_password %}
+{% /new_password %}
+
+{% #reset_password %}
+{% /reset_password %}   {% endcomment %}
+
+
+{% comment %} </div> {% endcomment %}
+
+{% comment %} {% load static %} {% endcomment %}
+
+{% load account socialaccount static%}
+<div class="d-flex flex-column flex-root">
+  <!--begin::Authentication - Sign-in -->
+  <div class="d-flex flex-column flex-lg-row flex-column-fluid justify-content-center align-items-center">
+    <!--begin::Body-->
+    <div
+      class="d-flex flex-column col-md-5 p-10 card order-2 order-lg-1">
+      <!--begin::Form-->
+      <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+        
+        {% get_providers as socialaccount_providers %}
+
+        <!--begin::Wrapper-->
+        <div class="w-lg-500px p-10">
+          <!--begin::Form-->
+          <form
+            class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+            novalidate="novalidate"
+            method="post"
+        
+            action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {% block message %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endblock message %}
+            
+
+            <div class="text-center mb-11">
+              <image src="{%  static 'assets/media/logos/yeager.png' %}">
+              <!--begin::Title-->
+              <h1 class="text-dark fw-bolder mb-3">Welcome Back</h1>
+              <!--end::Title-->
+
+              <!--begin::Subtitle-->
+              <div class="text-gray-500 fw-semibold fs-6">
+                Sign In
+              </div>
+              <!--end::Subtitle-->
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-dismissible alert-danger">
+              {{ message }}
+              {{form.errors}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+
+
+
+            <!--begin::Input group-->
+            <div class="fv-row mb-8 fv-plugins-icon-container">
+              <!--begin::Email-->
+              {{form.login}}
+              <!--end::Email-->
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+
+            <!--end::Input group-->
+            <div class="fv-row mb-3 fv-plugins-icon-container">
+              <!--begin::Password-->
+              {{form.password}}
+              <!--end::Password-->
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+            <!--end::Input group-->
+
+            <!--begin::Wrapper-->
+            <div
+              class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8"
+            >
+              <div></div>
+
+              <!--begin::Link-->
+              <a
+                href="/metronic8/demo7/../demo7/authentication/layouts/corporate/reset-password.html"
+                class="link-primary"
+              >
+                Forgot Password ?
+              </a>
+              <!--end::Link-->
+            </div>
+            <!--end::Wrapper-->
+
+            <!--begin::Submit button-->
+            <div class="d-grid mb-10">
+              <button
+                type="submit"
+                id="kt_sign_in_submit"
+                class="btn btn-primary"
+              >
+                <!--begin::Indicator label-->
+                <span class="indicator-label"> Sign In</span>
+                <!--end::Indicator label-->
+
+                <!--begin::Indicator progress-->
+                <span class="indicator-progress">
+                  Please wait...
+                  <span
+                    class="spinner-border spinner-border-sm align-middle ms-2"
+                  ></span>
+                </span>
+                <!--end::Indicator progress-->
+              </button>
+            </div>
+            <!--end::Submit button-->
+
+            <!--begin::Sign up-->
+            <div class="text-gray-500 text-center fw-semibold fs-6">
+              Not a Member yet?
+
+              <a
+                href="{{ signup_url }}"
+                class="link-primary"
+              >
+                Sign up
+              </a>
+              Forgot password ? 
+              <a
+                href="{{ account_reset_password }}"
+                class="link-primary"
+              >
+                Recovery Here
+              </a>
+              
+            </div>
+            <!--end::Sign up-->
+
+            <!--begin::Heading-->
+            {% if socialaccount_providers %}
+            {% if ACCOUNT_ALLOW_REGISTRATION %}
+            <!--begin::Separator-->
+            <div class="separator separator-content my-14">
+              <span class="w-125px text-gray-500 fw-semibold fs-7"
+                >Or with email</span
+              >
+            </div>
+            <!--end::Separator-->
+            {% endif %}
+            {% include "socialaccount/snippets/login_extra.html" %}
+            {% endif %}
+            <!--begin::Heading-->
+
+            <!--begin::Login options-->
+            <div class="row g-3 mb-9">
+              {% comment %} do oauth here  {% endcomment %}
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+            </div>
+            <!--end::Login options-->
+          </form>
+          <!--end::Form-->
+        </div>
+        <!--end::Wrapper-->
+      </div>
+      <!--end::Form-->
+
+      <!--begin::Footer-->
+      <div class="text-center px-10 mx-auto">
+
+        <!--begin::Links-->
+        <div class="d-flex fw-semibold text-primary fs-base gap-5">
+          <a href="#" target="_blank"
+            >Terms of Use</a
+          >
+
+          <a
+            href="#"
+            target="_blank"
+            >Privacy Plan</a
+          >
+
+        </div>
+        <!--end::Links-->
+      </div>
+      <!--end::Footer-->
+    </div>
+    <!--end::Body-->
+
+  </div>
+  <!--end::Authentication - Sign-in-->
+</div>
+
+
+
+{% endblock content %}
+
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% endblock modal %} 

@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+{% if user %}
+    
+{% #aside user=user %}
+{% /aside %}
+{% endif %}
+
+{% comment %} <div id="data-container" hx-get="/data/?socket_url=ws://external-api.com/stream" hx-target="#data-container" hx-swap="innerHTML"></div> {% endcomment %}
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper" >
+
+    {% if user %}
+    {% #world_heading user=user heading="World Events" %}
+    {% /world_heading %}
+    {% endif %}
+
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        
+        <!--begin::Container-->
+        <div class="container-xxl" id="kt_content_container"> 
+
+            <div hx-ws="connect:ws://localhost:8000/ws/world/" >
+            </div>
+
+            <div id='timeline'></div>
+
+        {% comment %} {% if world_instance %}
+
+        {% #world_instance_detail data=world_instance %}
+        {% /world_instance_detail %}
+
+        {% endif %} {% endcomment %}
+
+        
+
+    
+        </div>
+    </div>
+
+    {% #footer %}
+    {% /footer %}
+</div>
+
+{% comment %} <script type="text/javascript">
+    const url = `ws://${window.location.host}/ws/world/`
+    const eventSocket = new WebSocket(url);
+    eventSocket.onmessage = function (event) {
+      // Process the received message
+      console.log(event)
+    }
+</script> {% endcomment %}
+
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% #create_goal data="db_data"%}
+{% /create_goal%}
+{% #edit_goal data="db_data"%}
+{% /edit_goal%}
+
+{% endblock modal %} 

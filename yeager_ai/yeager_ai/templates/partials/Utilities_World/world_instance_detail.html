@@ -1,0 +1,41 @@
+{% load static %}
+<div>
+  <ul
+    class="nav nav-custom nav-tabs nav-line-tabs fs-4 mb-11"
+    role="tablist"
+    style="border-bottom-color: #e1e3ea"
+  >
+    <!--begin:::Tab item-->
+    <li class="nav-item" role="presentation" style="">
+      <a
+        class="nav-link text-active-primary pb-4 active"
+        href="#kt_user_event_stream"
+        aria-selected="true"
+        data-bs-toggle="tab"
+        role="tab"
+        >Event Stream</a
+      >
+    </li>
+    <!--end:::Tab item-->
+
+    <!--begin:::Tab item-->
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link text-active-primary pb-4"
+        data-kt-countup-tabs="true"
+        href="#kt_user_view_agent"
+        aria-selected="false"
+        data-bs-toggle="tab"
+        role="tab"
+        tabindex="-1"
+        >Agent</a
+      >
+    </li>
+    <!--end:::Tab item-->
+  </ul>
+
+  <div class="tab-content w-100" id="myTabContent">
+    {% comment %} {% include './event_world.html' %} 
+    {% include './agent_world.html' %} {% endcomment %}
+  </div>
+</div>

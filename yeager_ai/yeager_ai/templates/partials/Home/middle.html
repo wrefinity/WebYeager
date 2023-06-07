@@ -1,0 +1,27 @@
+<div class="d-flex flex-wrap flex-stack mb-6">
+    <!--begin::Heading-->
+    <h3 class="fw-bold my-2">
+      {{name}}
+      <span class="fs-6 text-gray-400 fw-semibold ms-1">Active</span>
+    </h3>
+    <!--end::Heading-->
+  
+    <!--begin Actions-->
+    {% comment %} <div class="d-flex flex-wrap my-2">
+  
+      <a href="{% url 'world_detail' %}">
+      <button
+        type="button"
+        class="btn btn-primary btn-small"
+        data-kt-stepper-action="next"
+      >
+        New world
+        <i class="ki-duotone ki-arrow-right fs-4 ms-1 me-0">
+          <span class="path1"> </span>
+          <span class="path2"> </span>
+        </i>
+      </button>
+    </a>
+    </div> {% endcomment %}
+    <!--end::Actions-->
+  </div>

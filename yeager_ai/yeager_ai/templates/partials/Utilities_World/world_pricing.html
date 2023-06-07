@@ -1,0 +1,123 @@
+{% load static %}
+
+<!--begin::Pricing card-->
+<div class="card" id="kt_pricing">
+  <!--begin::Card body-->
+  <div class="card-body p-lg-17">
+    <!--begin::Plans-->
+    <div class="d-flex flex-column">
+      <!--begin::Heading-->
+      <div class="mb-13 text-center">
+        <h1 class="fs-2hx fw-bold mb-5">Choose Your Plan</h1>
+
+        <div class="text-gray-400 fw-semibold fs-5">
+          Below are more information about our pricing. 
+        </div>
+      </div>
+      <!--end::Heading-->
+      
+      <!--begin::Nav group-->
+      {% comment %}
+      <div
+        class="nav-group nav-group-outline mx-auto mb-15"
+        data-kt-buttons="true"
+        data-kt-initialized="1"
+      >
+      Further enquires? Visit
+      <a href="#" class="link-primary fw-bold">Pricing Guidelines</a>.
+        <button
+          class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3 me-2"
+          data-kt-plan="month"
+        >
+          Monthly
+        </button>
+
+        <button
+          class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3"
+          data-kt-plan="annual"
+        >
+          Annual
+        </button>
+      </div>
+      {% endcomment %}
+      <!--end::Nav group-->
+
+      <!--begin::Row-->
+      <div class="row g-10">
+        <!--begin::Col-->
+        {% for price in data %}
+
+        <div class="col-xl-4">
+          <form method="POST" action="{% url 'payment:payment_checkout_session' price.id %}" class="product-form">
+            {% csrf_token %}
+          <div class="d-flex h-100 align-items-center">
+            <!--begin::Option-->
+            <div
+              class="w-100 d-flex flex-column flex-center rounded-3 bg-light bg-opacity-75 py-15 px-10"
+            >
+              <!--begin::Heading-->
+              <div class="mb-7 text-center">
+                <!--begin::Title-->
+                {% comment %} <img src={{price.image.url}}/> {% endcomment %}
+                <h1 class="text-dark mb-5 fw-bolder">{{price.name}}</h1>
+                <!--end::Title-->
+
+                <!--begin::Description-->
+                <div class="text-gray-400 fw-semibold mb-5">
+                  {{ price.description }}
+                </div>
+                <!--end::Description-->
+
+                <!--begin::Price-->
+                <div class="text-center">
+                  <span
+                    class="fs-6 text-dark fw-bold"
+                    
+                  >
+                    {{price}}
+                  </span>
+                  
+                  {% comment %}
+                  <span class="fs-7 fw-semibold opacity-50"
+                    >/
+                    <span data-kt-element="period">50credits</span>
+                  </span>
+                  {% endcomment %}
+                </div>
+                <!--end::Price-->
+              </div>
+              <!--end::Heading-->
+
+              <!--begin::Features-->
+              <div class="w-100 mb-10">
+                <!--begin::Item-->
+                <div class="d-flex align-items-center mb-5">
+                  <span class="fw-semibold fs-8 text-gray-800 flex-grow-1 pe-3">
+                    {{price}}
+                  </span>
+                  <i class="ki-duotone ki-check-circle fs-1 text-success"
+                    ><span class="path1"></span><span class="path2"></span
+                  ></i>
+                </div>
+
+              </div>
+              <!--end::Features-->
+
+              <!--begin::Select-->
+              <button type="submit" class="btn btn-sm btn-primary"
+                >Pay</button>
+              <!--end::Select-->
+            </div>
+            <!--end::Option-->
+          </div>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      <!--end::Row-->
+    </div>
+    <!--end::Plans-->
+  </div>
+  <!--end::Card body-->
+</div>
+<!--end::Pricing card-->

@@ -1,0 +1,294 @@
+{% load static %}
+
+<div class="col-xxl-4">
+  <!--begin::Aside-->
+  <div
+    class="card d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-400px"
+  >
+    <!--begin::Wrapper-->
+    <!--begin::Form-->
+
+    <!--begin::List Widget 3-->
+
+    <!--begin::Header-->
+    <div class="card-header border-0">
+      <h3 class="card-title fw-bold text-dark">Goals</h3>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div class="card-body pt-2">
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-8">
+        <!--begin::Bullet-->
+        <span class="bullet bullet-vertical h-40px bg-success"></span>
+        <!--end::Bullet-->
+
+        <!--begin::Checkbox-->
+        <div class="form-check form-check-custom form-check-solid mx-5">
+          <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <!--end::Checkbox-->
+
+        <!--begin::Description-->
+        <div class="flex-grow-1">
+          <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+            >Create FireStone Logo</a
+          >
+
+          <span class="text-muted fw-semibold d-block">Due in 2 Days</span>
+        </div>
+        <!--end::Description-->
+
+        <span class="badge badge-light-success fs-8 fw-bold">New</span>
+      </div>
+      <!--end:Item-->
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-8">
+        <!--begin::Bullet-->
+        <span class="bullet bullet-vertical h-40px bg-primary"></span>
+        <!--end::Bullet-->
+
+        <!--begin::Checkbox-->
+        <div class="form-check form-check-custom form-check-solid mx-5">
+          <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <!--end::Checkbox-->
+
+        <!--begin::Description-->
+        <div class="flex-grow-1">
+          <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+            >Stakeholder Meeting</a
+          >
+
+          <span class="text-muted fw-semibold d-block">Due in 3 Days</span>
+        </div>
+        <!--end::Description-->
+
+        <span class="badge badge-light-primary fs-8 fw-bold">New</span>
+      </div>
+      <!--end:Item-->
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-8">
+        <!--begin::Bullet-->
+        <span class="bullet bullet-vertical h-40px bg-warning"></span>
+        <!--end::Bullet-->
+
+        <!--begin::Checkbox-->
+        <div class="form-check form-check-custom form-check-solid mx-5">
+          <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <!--end::Checkbox-->
+
+        <!--begin::Description-->
+        <div class="flex-grow-1">
+          <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+            >Scoping &amp; Estimations</a
+          >
+
+          <span class="text-muted fw-semibold d-block">Due in 5 Days</span>
+        </div>
+        <!--end::Description-->
+
+        <span class="badge badge-light-warning fs-8 fw-bold">New</span>
+      </div>
+      <!--end:Item-->
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-8">
+        <!--begin::Bullet-->
+        <span class="bullet bullet-vertical h-40px bg-primary"></span>
+        <!--end::Bullet-->
+
+        <!--begin::Checkbox-->
+        <div class="form-check form-check-custom form-check-solid mx-5">
+          <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <!--end::Checkbox-->
+
+        <!--begin::Description-->
+        <div class="flex-grow-1">
+          <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+            >KPI App Showcase</a
+          >
+
+          <span class="text-muted fw-semibold d-block">Due in 2 Days</span>
+        </div>
+        <!--end::Description-->
+
+        <span class="badge badge-light-primary fs-8 fw-bold">New</span>
+      </div>
+      <!--end:Item-->
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-8">
+        <!--begin::Bullet-->
+        <span class="bullet bullet-vertical h-40px bg-danger"></span>
+        <!--end::Bullet-->
+
+        <!--begin::Checkbox-->
+        <div class="form-check form-check-custom form-check-solid mx-5">
+          <input class="form-check-input" type="checkbox" value="" />
+        </div>
+        <!--end::Checkbox-->
+
+        <!--begin::Description-->
+        <div class="flex-grow-1">
+          <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6"
+            >Project Meeting</a
+          >
+
+          <span class="text-muted fw-semibold d-block">Due in 12 Days</span>
+        </div>
+        <!--end::Description-->
+
+        <span class="badge badge-light-danger fs-8 fw-bold">New</span>
+      </div>
+      <!--end:Item-->
+    </div>
+    <div class="d-flex justify-content-center my-4">
+      <a
+        href="#"
+        class="btn btn-primary px-6 align-self-center"
+        data-bs-toggle="modal"
+        data-bs-target="#kt_modal_create_new_goal">
+        <i class="ki-duotone ki-check fs-3 d-none"></i>
+        <!--begin::Indicator label-->
+        <span class="indicator-label"> New Goal</span>
+        <!--end::Indicator label-->
+
+        <!--begin::Indicator progress-->
+        <span class="indicator-progress">
+          Please wait...
+          <span
+            class="spinner-border spinner-border-sm align-middle ms-2"
+          ></span>
+        </span>
+        <!--end::Indicator progress-->
+      </a>
+
+      <a
+        href="#"
+        class="btn btn-light px-6 align-self-center"
+        data-bs-toggle="modal"
+        data-bs-target="#kt_modal_edit_goal">
+        <i class="ki-duotone ki-check fs-3 d-none"></i>
+        <!--begin::Indicator label-->
+        <span class="indicator-label"> Edit Goal</span>
+      </a>
+    </div>
+    <!--end::Body-->
+
+    <!--begin::Header-->
+    <div class="card-header border-0">
+      <h3 class="card-title fw-bold text-dark">Output</h3>
+    </div>
+    <!--end::Header-->
+    <div class="card-body p-9 pt-3">
+      <!--begin::Files-->
+      <div class="d-flex flex-column mb-9">
+        <!--begin::File-->
+        <div class="d-flex align-items-center mb-5">
+          <!--begin::Icon-->
+          <div class="symbol symbol-30px me-5">
+            <img
+              alt="Icon"
+              src="{% static '/assets/media/svg/files/pdf.svg' %}"
+            />
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Details-->
+          <div class="fw-semibold">
+            <a class="fs-6 fw-bold text-dark text-hover-primary" href="#"
+              >Project tech requirements
+            </a>
+
+            <div class="text-gray-400">
+              2 days ago <a href="#">Karina Clark</a>
+            </div>
+          </div>
+          <!--end::Details-->
+        </div>
+        <!--end::File-->
+        <!--begin::File-->
+        <div class="d-flex align-items-center mb-5">
+          <!--begin::Icon-->
+          <div class="symbol symbol-30px me-5">
+            <img
+              alt="Icon"
+              src="{% static '/assets/media/svg/files/doc.svg' %}"
+            />
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Details-->
+          <div class="fw-semibold">
+            <a class="fs-6 fw-bold text-dark text-hover-primary" href="#"
+              >Create FureStibe branding proposal</a
+            >
+
+            <div class="text-gray-400">
+              Due in 1 day <a href="#">Marcus Blake</a>
+            </div>
+          </div>
+          <!--end::Details-->
+        </div>
+        <!--end::File-->
+        <!--begin::File-->
+        <div class="d-flex align-items-center mb-5">
+          <!--begin::Icon-->
+          <div class="symbol symbol-30px me-5">
+            <img
+              alt="Icon"
+              src="{% static '/assets/media/svg/files/css.svg' %}"
+            />
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Details-->
+          <div class="fw-semibold">
+            <a class="fs-6 fw-bold text-dark text-hover-primary" href="#"
+              >Completed Project Stylings</a
+            >
+
+            <div class="text-gray-400">
+              Due in 1 day <a href="#">Terry Barry</a>
+            </div>
+          </div>
+          <!--end::Details-->
+
+          <!--begin::Menu-->
+        </div>
+        <!--end::File-->
+        <!--begin::File-->
+        <div class="d-flex align-items-center">
+          <!--begin::Icon-->
+          <div class="symbol symbol-30px me-5">
+            <img
+              alt="Icon"
+              src="{% static '/assets/media/svg/files/ai.svg' %}"
+            />
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Details-->
+          <div class="fw-semibold">
+            <a class="fs-6 fw-bold text-dark text-hover-primary" href="#"
+              >Create Project Wireframes</a
+            >
+
+            <div class="text-gray-400">
+              Due in 3 days <a href="#">Roth Bloom</a>
+            </div>
+          </div>
+          <!--end::Details-->
+        </div>
+        <!--end::File-->
+      </div>
+      <!--end::Files-->
+    </div>
+  </div>
+
+  <!--end:List Widget 3-->
+</div>
+
+{% comment %} style="background-color: #ff5722; color: white" {% endcomment %}

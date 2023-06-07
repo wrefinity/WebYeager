@@ -1,0 +1,67 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+{% if user and all_objects %}
+{% #aside user=user data=all_objects%}
+{% /aside %}
+{% endif %}
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+    {% if user %}
+    {% #header heading="Agent Explore" user=user%}
+    {% /header %}
+    {% endif %}
+    <!--begin::Container-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+    <div class="container-xxl" id="kt_content_container"> 
+    <div class="card p-5" id="kt_content_container">  
+        
+        {% if agent %}
+
+        {% #agent_card_header data=agent %}
+        {% /agent_card_header%}
+        <div class="row g-6 g-xl-9">
+            
+            {% #tools_card name="Tools" data=agent %}
+            {% /tools_card %}
+
+            {% #memory_card name="Memory" data=agent %}
+            {% /memory_card %}
+        </div>
+        {% endif %}
+    </div>
+
+    
+
+        
+        <!--end::Container-->
+    
+    </div>
+</div>
+{% #paginate%} 
+{% /paginate%} 
+{% #modalhome%} 
+{% /modalhome%} 
+{% #footer %}
+{% /footer %}
+</div>
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% endblock modal %} 

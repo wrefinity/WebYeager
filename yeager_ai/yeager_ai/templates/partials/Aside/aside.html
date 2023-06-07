@@ -1,0 +1,453 @@
+{% load static %}
+
+<div
+  id="kt_aside"
+  class="aside aside-extended"
+  data-kt-drawer="true"
+  data-kt-drawer-name="aside"
+  data-kt-drawer-activate="{default: true, lg: false}"
+  data-kt-drawer-overlay="true"
+  data-kt-drawer-width="auto"
+  data-kt-drawer-direction="start"
+  data-kt-drawer-toggle="#kt_aside_mobile_toggle"
+>
+  <!--begin::Primary-->
+  <div
+    class="aside-primary d-flex flex-column align-items-lg-center flex-row-auto"
+  >
+    <!--begin::Logo-->
+    <div
+      class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto py-10"
+      id="kt_aside_logo"
+    >
+      <a href="{% url 'worlds:world_list' %}">
+        <img
+          alt="Logo"
+          src="{% static 'assets/media/logos/GenImg.png' %}"
+          class="h-30px"
+        />
+      </a>
+    </div>
+    <!--end::Logo-->
+
+    <!--begin::Nav-->
+    <div
+      class="aside-nav d-flex flex-column align-items-center flex-column-fluid w-100 pt-5 pt-lg-0"
+      id="kt_aside_nav"
+    >
+      <!--begin::Wrapper-->
+      <div
+        class="hover-scroll-overlay-y mb-5 px-5"
+        data-kt-scroll="true"
+        data-kt-scroll-activate="{default: false, lg: true}"
+        data-kt-scroll-height="auto"
+        data-kt-scroll-wrappers="#kt_aside_nav"
+        data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer"
+        data-kt-scroll-offset="0px"
+        style="height: 540px"
+      >
+     </li>
+        <!--begin::Nav-->
+        <div class="nav">
+          <ul class="nav flex-column w-100">
+            <li class="nav-item mb-1" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" aria-label="Worlds" data-bs-original-title="Worlds">
+
+              <button id="worlds_button" class="btn nav-link" data-target="#world_menu" role="tab" aria-selected="true">
+                <div class="symbol symbol-circle symbol-25px">
+                <img
+                  src="{% static 'assets/media/svg/figma/world.svg' %}"
+                  alt="img"
+                />
+              </div>
+            </button>
+            </li>
+            <li class="nav-item mb-1" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" aria-label="Agents" data-bs-original-title="Agents">
+              <button id="agents_button" class="btn nav-link" data-target="#agent_menu" role="tab" aria-selected="true">
+                <div class="symbol symbol-circle symbol-25px">
+                <img
+                  src="{% static 'assets/media/svg/figma/dna.svg' %}"
+                  alt="img"
+                />
+              </div>
+            </button>
+            </li>
+          </ul>
+        </div>
+        <!--end::Tabs-->
+      </div>
+      <!--end::Nav-->
+    </div>
+    <!--end::Nav-->
+
+    <!--begin::Footer-->
+    <div
+      class="aside-footer d-flex flex-column align-items-center flex-column-auto"
+      id="kt_aside_footer"
+    >
+      <!--begin::Quick links-->
+      <div class="d-flex align-items-center mb-2"></div>
+      <!--end::Quick links-->
+
+      <!--begin::Activities-->
+      <div class="d-flex align-items-center mb-3">
+        <!--begin::Drawer toggle-->
+        <div
+          class="btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
+          data-kt-menu-placement="top-start"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-dismiss="click"
+          data-bs-original-title="Activity Logs"
+          data-kt-initialized="1"
+        >
+          <i class="ki-duotone ki-chart-simple fs-2 fs-lg-1"
+            ><span class="path1"></span><span class="path2"></span
+            ><span class="path3"></span><span class="path4"></span
+          ></i>
+        </div>
+        <!--end::drawer toggle-->
+      </div>
+      <!--end::Activities-->
+
+      <!--begin::Notifications-->
+
+      <!--end::Notifications-->
+
+      <!--begin::User-->
+      <div
+        class="d-flex align-items-center mb-10"
+        id="kt_header_user_menu_toggle"
+      >
+        <!--begin::Menu wrapper-->
+        <div
+          class="cursor-pointer symbol symbol-40px"
+          data-kt-menu-trigger="click"
+          data-kt-menu-overflow="true"
+          data-kt-menu-placement="top-start"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-dismiss="click"
+          aria-label="User profile"
+          data-bs-original-title="User profile"
+          data-kt-initialized="1"
+        >
+          {% if user.userprofile.avatar %}
+          <img src="{{ user.userprofile.avatar.url }}" alt="Logo" />
+          {% else %}
+          <img
+            src="{% static 'assets/media/svg/avatars/blank.svg' %}"
+            alt="Image"
+          />
+          {% endif %}
+        </div>
+
+        <!--begin::User account menu-->
+        <div
+          class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+          data-kt-menu="true"
+        >
+          <!--begin::Menu item-->
+          <div class="menu-item px-3">
+            <div class="menu-content d-flex align-items-center px-3">
+              <!--begin::Avatar-->
+              <div class="symbol symbol-50px me-5">
+                {% if user.userprofile.avatar %}
+                <img src="{{ user.userprofile.avatar.url }}" alt="Logo" />
+                {% else %}
+                <img
+                  src="{% static 'assets/media/svg/avatars/blank.svg' %}"
+                  alt="Image"
+                />
+                {% endif %}
+              </div>
+              <!--end::Avatar-->
+
+              <!--begin::Username-->
+              <div class="d-flex flex-column">
+                <div class="fw-bold d-flex align-items-center fs-5">
+                  {{user.first_name}} {{user.last_name}}
+                  <span
+                    class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2"
+                    ><i class="ki-duotone ki-emoji-happy text-warning">
+                      <i class="path1"></i>
+                      <i class="path2"></i>
+                      <i class="path3"></i>
+                      <i class="path4"></i>
+                    </i>
+                  </span>
+                </div>
+              </div>
+              <!--end::Username-->
+            </div>
+          </div>
+          <!--end::Menu item-->
+
+          <!--begin::Menu separator-->
+          <div class="separator my-2"></div>
+          <!--end::Menu separator-->
+
+          <!--begin::Menu item-->
+          <div class="menu-item px-5">
+            <a
+              href="{% url 'referrals:view-referral-profile' %}"
+              class="menu-link px-5"
+            >
+              Referrals
+            </a>
+          </div>
+          <!--end::Menu item-->
+
+          <!--begin::Menu separator-->
+          <div class="separator my-2"></div>
+          <!--end::Menu separator-->
+
+          <!--begin::Menu item-->
+          <div class="menu-item px-5 my-1">
+            <a
+              href="{% url 'users_profile:account_overview' %}"
+              class="menu-link px-5"
+            >
+              Account Settings
+            </a>
+          </div>
+          <!--end::Menu item-->
+
+          <!--begin::Menu item-->
+          <div class="menu-item px-5">
+            <a href="{% url 'users:logout' %}" class="menu-link px-5">
+              Sign Out
+            </a>
+          </div>
+          <!--end::Menu item-->
+        </div>
+        <!--end::User account menu-->
+        <!--end::Menu wrapper-->
+      </div>
+      <!--end::User-->
+    </div>
+    <!--end::Footer-->
+  </div>
+  <!--end::Primary-->
+
+  <!--begin::Secondary-->
+  <div class="aside-secondary d-flex flex-row-fluid">
+    <!--begin::Workspace-->
+    <div class="aside-workspace my-5 p-5" id="kt_aside_wordspace">
+      <div class="d-flex h-100 flex-column">
+        <!--begin::Wrapper-->
+        <div
+          class="flex-column-fluid hover-scroll-y"
+          data-kt-scroll="true"
+          data-kt-scroll-activate="true"
+          data-kt-scroll-height="auto"
+          data-kt-scroll-wrappers="#kt_aside_wordspace"
+          data-kt-scroll-dependencies="#kt_aside_secondary_footer"
+          data-kt-scroll-offset="0px"
+          style="height: 742px"
+        >
+          <!-- Search -->
+
+          {% include '../Search/search.html' %}
+          <!-- endSearch -->
+
+
+          <div class="tab-content">
+            <!-- Worlds Tab -->
+            <div class="tab-pane fade show active" id="world_menu" role="tabpanel" aria-labelledby="worlds_tab">
+              <div class="m-0">
+                <a href="{% url 'worlds:world_list' %}">
+                      <h1 class="text-gray-800 fw-semibold mb-6 mx-5">Worlds</h1>
+                </a>
+                      
+                <!-- Items -->
+                <div class="world_items mb-10">
+                  <!-- World items will be dynamically appended here -->
+                </div>
+                <!-- End Items -->
+              </div>
+            </div>
+            
+            <!-- Agents Tab -->
+            <div class="tab-pane fade" id="agent_menu" role="tabpanel" aria-labelledby="agents_tab">
+              <div class="m-0">
+                <a href="{% url 'agents:agent_list' %}">
+                  <h1 class="text-gray-800 fw-semibold mb-6 mx-5">Agents</h1>
+            </a>
+                
+                <!-- Items -->
+                <div class="agent_items mb-10" >
+                  
+                </div>
+                <!-- End Items -->
+              </div>
+            </div>
+          </div>
+          
+          <!--end::Tab content-->
+        </div>
+        <!--end::Wrapper-->
+      </div>
+    </div>
+    <!--end::Workspace-->
+  </div>
+  <!--end::Secondary-->
+
+  <!--begin::Aside Toggle-->
+  <button
+    id="kt_aside_toggle"
+    class="aside-toggle btn btn-sm btn-icon bg-body btn-color-gray-700 btn-active-primary position-absolute translate-middle start-100 end-0 bottom-0 shadow-sm d-none d-lg-flex mb-5"
+    data-kt-toggle="true"
+    data-kt-toggle-state="active"
+    data-kt-toggle-target="body"
+    data-kt-toggle-name="aside-minimize"
+  >
+    <i class="ki-duotone ki-arrow-left fs-2 rotate-180">
+      <span class="path1"></span><span class="path2"></span>
+    </i>
+  </button>
+  <!--end::Aside Toggle-->
+</div>
+
+{% block javascript %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const worldsButton = document.getElementById('worlds_button');
+    worldsButton.addEventListener('click', function() {
+      const target = worldsButton.getAttribute('data-target');
+      const itemsContainer = document.querySelector(target + ' .world_items');
+      const worldNavUrl = "{% url 'worlds:world_navabr' %}"
+      itemsContainer.innerHTML = '';
+
+      worldsButton.setAttribute('aria-selected', 'true');
+      agentsButton.setAttribute('aria-selected', 'false');
+  
+      // Add 'show' and 'active' classes to the target tab pane
+      document.querySelector(target).classList.add('show', 'active');
+      document.querySelector('#agent_menu').classList.remove('show', 'active');
+  
+
+      fetch(worldNavUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length > 0) {
+            data.forEach(world => {
+              const item = document.createElement('a');
+              const urlDetail = "{% url 'worlds:world_detail' slug='__SLUG__' %}".replace('__SLUG__', world.slug);
+              item.href = urlDetail;
+              item.classList.add('custom-list', 'd-flex', 'align-items-center', 'px-5', 'py-4');
+
+              const symbol = document.createElement('div');
+              symbol.classList.add('symbol', 'symbol-40px', 'me-5');
+
+              const symbolLabel = document.createElement('span');
+              symbolLabel.classList.add('symbol-label');
+
+              const thumbnail = document.createElement('img');
+              thumbnail.src = world.thumbnail ? world.thumbnail : '{% static "assets/media/svg/avatars/blank.svg" %}';
+              thumbnail.classList.add('h-50', 'align-self-center');
+              symbolLabel.appendChild(thumbnail);
+
+              symbol.appendChild(symbolLabel);
+              item.appendChild(symbol);
+
+              const description = document.createElement('div');
+              description.classList.add('d-flex', 'flex-column', 'flex-grow-1');
+
+              const title = document.createElement('h5');
+              title.classList.add('custom-list-title', 'fw-semibold', 'text-gray-800', 'mb-1');
+              title.textContent = world.name;
+              description.appendChild(title);
+
+              const link = document.createElement('span');
+              link.classList.add('text-gray-400', 'fw-bold');
+              link.textContent = `${world.creator.first_name} ${world.creator.last_name}`;
+              description.appendChild(link);
+
+              item.appendChild(description);
+
+              itemsContainer.appendChild(item);
+            });
+          }
+        })
+        .catch(error => console.error(error));
+
+        // Store the active tab pane in localStorage
+        localStorage.setItem('activeTabPane', target);
+  });
+
+    const agentsButton = document.getElementById('agents_button');
+    agentsButton.addEventListener('click', function() {
+      const target = agentsButton.getAttribute('data-target');
+      const agentContainer = document.querySelector(target + ' .agent_items');
+      const agentNavUrl = "{% url 'agents:agent_navbar' %}"
+      agentContainer.innerHTML = '';
+
+      agentsButton.setAttribute('aria-selected', 'true');
+      worldsButton.setAttribute('aria-selected', 'false');
+  
+      // Add 'show' and 'active' classes to the target tab pane
+      document.querySelector(target).classList.add('show', 'active');
+      document.querySelector('#world_menu').classList.remove('show', 'active');
+  
+
+      fetch(agentNavUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length > 0) {
+            data.forEach(agent => {
+              const item = document.createElement('a');
+              const agentDetail = "{% url 'agents:agent_detail' slug='__SLUG__' %}".replace('__SLUG__', agent.slug);
+              item.href = agentDetail;
+              
+              item.classList.add('custom-list', 'd-flex', 'align-items-center', 'px-5', 'py-4');
+
+              const symbol = document.createElement('div');
+              symbol.classList.add('symbol', 'symbol-40px', 'me-5');
+
+              const symbolLabel = document.createElement('span');
+              symbolLabel.classList.add('symbol-label');
+
+              const avatar = document.createElement('img');
+              avatar.src = agent.avatar ? agent.avatar : '{% static "assets/media/svg/avatars/blank.svg" %}';
+              avatar.classList.add('h-50', 'align-self-center');
+              symbolLabel.appendChild(avatar);
+
+              symbol.appendChild(symbolLabel);
+              item.appendChild(symbol);
+
+              const description = document.createElement('div');
+              description.classList.add('d-flex', 'flex-column', 'flex-grow-1');
+
+              const title = document.createElement('h5');
+              title.classList.add('custom-list-title', 'fw-semibold', 'text-gray-800', 'mb-1');
+              title.textContent = agent.name;
+              description.appendChild(title);
+
+              const link = document.createElement('span');
+              link.classList.add('text-gray-400', 'fw-bold');
+              link.textContent = `${agent.created_at}`;
+              description.appendChild(link);
+
+              item.appendChild(description);
+
+              agentContainer.appendChild(item);
+            });
+          }
+        })
+    // Store the active tab pane in localStorage
+    localStorage.setItem('activeTabPane', target);
+  });
+
+  // Retrieve the active tab pane from localStorage
+  const activeTabPane = localStorage.getItem('activeTabPane');
+  if (activeTabPane) {
+    const activeButton = document.querySelector(`[data-target="${activeTabPane}"]`);
+    if (activeButton) {
+      activeButton.click(); // Trigger the click event to display the active tab pane
+    }
+  }
+});
+</script>
+
+{% endblock javascript %}

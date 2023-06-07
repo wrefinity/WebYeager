@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+{% if user %}
+{% #aside user=user%}
+{% /aside %}
+{% endif %}
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+    {% if user %}
+    {% #header heading="Account" user=user %}
+    {% /header %}
+    {% endif %}
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Container-->
+    <div class="container-xxl" id="kt_content_container">   
+        
+        {% if user %}
+        {% #profiler user=user %}
+        {% /profiler %}
+        {% #profile_detail user=user %}
+        {% /profile_detail %}
+
+        {% endif %}
+
+
+        <!--end::Container-->
+    </div>
+    </div>
+    {% #footer %}
+    {% /footer %}
+</div>
+{% endblock content %}
+
+{% block drawer %}
+
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% endblock modal %} 

@@ -1,0 +1,140 @@
+{% load static i18n %}<!DOCTYPE html>
+{% load slippers %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}YeagerAI Web App{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YeagerAI Web Applications">
+    <meta name="author" content="YeagerAI LLC">
+    
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    {% block css %}
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    
+    <!-- This file stores project-specific CSS -->
+    <link href="{% static 'sass/project.scss' %}" rel="stylesheet">
+    <link href="{% static 'sass/style.scss' %}" rel="stylesheet">
+    <link href="{% static 'sass/plugins.scss' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/custom/datatables/datatables.bundle.css'%}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'assets/plugins/custom/vis-timeline/vis-timeline.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'js/components/util.js' %}"></script>
+    
+
+    {% endblock %}
+    <!-- Le javascript
+    ================================================== -->
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+
+      <!-- Vendor dependencies bundled as one file -->
+    <script src="https://js.stripe.com/v3/"></script>
+    {% comment %} <script src="https://unpkg.com/htmx.org@1.8.5"></script> {% endcomment %}
+    <script defer src="{% static 'js/vendors/plugins/apexchart.init.js' %}"></script>
+    <script defer src="{% static 'js/htmx.min.js' %}"></script>
+
+
+
+    <!-- place project specific Javascript in this file -->
+    <script defer src="{% static 'js/project.js' %}"></script>
+    <script src="{% static 'assets/plugins/global/plugins.bundle.js' %}"></script>
+      
+      {% comment %} <script src="{% static 'assets/js/scripts.bundle.js' %}"></script> {% endcomment %}
+		<script src="{% static 'js/scripts.bundle.js' %}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Vendors Javascript(used for this page only)-->
+    <!--begin::Vendors Javascript(used for this page only)-->
+    <script src="{% static 'js/custom/apps/projects/project/project.js' %}"></script>
+    <script src="{% static 'js/custom/landing.js' %}"></script>
+    <script src="{% static 'js/custom/widgets.js' %}"></script>
+
+
+    
+
+
+    <script src="{% static 'js/vendors.js' %}"></script>
+    <script src="{% static 'js/vendors.min.js' %}"></script>
+    <script src="{% static 'js/widgets.bundle.js' %}"></script>
+    <script src="{% static 'js/project.js' %}"></script>
+    <script src="{% static 'js/project.min.js' %}"></script>
+
+
+
+
+
+
+
+		<script src="{% static 'assets/plugins/custom/vis-timeline/vis-timeline.bundle.js' %}"></script>
+    <script src="{% static 'assets/plugins/custom/fslightbox/fslightbox.bundle.js' %}"></script>
+    <script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+    <script src="{% static 'js/widgets.bundle.js' %}"></script>
+    <script src="{% static 'js/custom/widgets.js' %}"></script>
+
+
+
+
+
+      <script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+
+      
+      {% comment %} user functionalities {% endcomment %}
+      <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+      <!--end::Custom Javascript-->
+
+    {% endblock javascript %}
+
+  </head>
+  <body id="kt_body" style="background-image: url()" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-enabled" hx-ext="ws">
+
+    {% block messages %}
+    {% if messages %}
+    {% comment %} coded your messgas  {% endcomment %}
+    {% endif %}
+    {% endblock messages %}
+
+    <div class="d-flex flex-column flex-root" data-select2-id="select2-data-167-29ev">
+
+      <div class="page d-flex flex-row flex-column-fluid">
+        
+
+
+        {% block content %}
+          <p>Use this document as a way to quick start any new project.</p>
+        {% endblock content %}
+      </div>  
+
+    </div>
+
+    {% block drawer %}
+    {% endblock drawer %} 
+    {% block modal %}
+    {% endblock modal %} 
+
+    {% block inline_javascript %}
+    {% comment %}
+    Script tags with only code, no src (defer by default). To run
+    with a "defer" so that you run inline code:
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */});
+    </script>
+    {% endcomment %}
+    {% endblock inline_javascript %}
+    {% block extrascripts %}
+    {% endblock %}
+  </body>
+</html>

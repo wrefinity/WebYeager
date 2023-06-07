@@ -1,0 +1,57 @@
+{% load socialaccount %}
+{% load static %}
+
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+{% if provider.id == "openid" %}
+{% for brand in provider.get_brands %}
+
+<div class="col-md-4 justify-content-center align-items-center">
+  <!--begin::Google link-->
+  <a
+  title="{{brand.name}}"
+  href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+    class="socialaccount_provider {{provider.id}} {{brand.id}} btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
+    <img
+      alt="Logo"
+      src="{% static 'assets/media/svg/brand-logos/apple-black.svg' %}"
+      class="theme-light-show h-15px me-3"
+    />
+    <img
+      alt="Logo"
+      src="{% static 'assets/media/svg/brand-logos/apple-black-dark.svg' %}"
+      class="theme-dark-show h-15px me-3"
+    />
+    {{brand.name}}
+  </a>
+  <!--end::Google link-->
+</div>
+<div>
+  <a title="{{brand.name}}" 
+     class="socialaccount_provider {{provider.id}} {{brand.id}}" 
+     href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+     >{{brand.name}} </a>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="col-md-4">
+  <!--begin::Google link-->
+  <a
+    href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
+    title="{{provider.name}}"
+    class="socialaccount_provider {{provider.id}} btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100"
+  >
+
+    <img
+    alt="Logo" 
+      src="
+     {% with 'assets/media/svg/brand-logos/'|add:provider.name|add:'.svg' as image %}
+      {% static image %}
+     {% endwith %}
+     " alt="{{ provider.name }}" class="theme-light-show h-15px me-3"/>
+    {{provider.name}}
+  </a>
+</div>
+{% endfor %}

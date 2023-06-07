@@ -1,0 +1,32 @@
+{% load static %}
+<div class="col-md-6 col-xl-4">
+  <div
+    class="card border-hover-primary border border-gray-500 border-dashed rounded">
+      <div class="card-body p-9">
+        <!--begin::Name-->
+        <div class="fs-3 fw-bold text-dark mb-3">{{name}}</div>
+        <!--end::Name-->
+
+
+        <tbody>
+
+          {% for tool in data.tools.all %}
+          <tr>
+            
+            <td>
+              <span class="text-dark fw-bold text-hover-primary mb-2 fs-6"
+                >{{tool.name}}</span
+              >
+      
+
+              <span class="text-muted fw-semibold mb-2 d-block fs-7"
+                >{{tool.description}}</span>
+            </td>
+          </tr>
+          {% endfor %}
+  
+        </tbody>
+      
+      </div>
+  </div>
+</div>

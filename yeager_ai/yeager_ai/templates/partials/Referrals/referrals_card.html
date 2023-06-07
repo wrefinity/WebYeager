@@ -1,0 +1,65 @@
+{% load static  %}
+
+<div class="card mb-5 mb-xl-10">
+    <!--begin::Body-->
+    <div class="card-body py-10">
+        <h2 class="mb-9">
+            Referral Program
+        </h2>
+
+        <!--begin::Overview-->
+        <div class="row mb-10">
+            <!--begin::Col-->
+            <div class="col-xl-6 mb-15 mb-xl-0 pe-5">
+                <h4 class="mb-0">How to use Referral Program</h4>
+
+                <p class="fs-6 fw-semibold text-gray-600 py-4 m-0">
+                   Copy the referal link to the right and send to your referal
+                </p>
+
+                <a href="#" class="btn btn-light btn-active-light-primary fw-bold">Get Started</a>
+            </div>
+            <!--end::Col-->
+
+            <!--begin::Col-->
+            <div class="col-xl-6">
+                <h4 class="text-gray-800 mb-0">
+                    Your Referral Link Invite Link: <a href="http://127.0.0.1:8001/accounts/signup/?invite_code={{referralProfile.invite_code}}">http://127.0.0.1:8000/accounts/signup/?invite_code={{referralProfile.invite_code}}</a>
+                </h4>
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Overview-->
+
+        <!--begin::Stats-->
+        <div class="row">
+            <!--begin::Col-->
+            <div class="col">
+                <div class="card card-dashed flex-center min-w-175px my-3 p-6">
+                    <span class="fs-4 fw-semibold text-info pb-1 px-2">Net Earnings</span>                    
+                    <span class="fs-lg-2tx fw-bold d-flex justify-content-center">
+                        $<span data-kt-countup="true" data-kt-countup-value="63,240.00" class="counted" data-kt-initialized="1">  {{ referralProfile.earnings }}</span>
+                    </span>
+                </div>
+            </div>
+            <!--end::Col-->
+
+            <!--begin::Col-->
+            <div class="col">
+                <div class="card card-dashed flex-center min-w-175px my-3 p-6">
+                    <span class="fs-4 fw-semibold text-success pb-1 px-2">Invite Count</span>                    
+                    <span class="fs-lg-2tx fw-bold d-flex justify-content-center">
+                        <span data-kt-countup="true" data-kt-countup-value="8,530.00" class="counted" data-kt-initialized="1">{{referralProfile.invite_count}}</span>
+                    </span>
+                </div>
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Stats-->
+
+
+        
+     </div>
+    <!--end::Body-->
+</div>
+

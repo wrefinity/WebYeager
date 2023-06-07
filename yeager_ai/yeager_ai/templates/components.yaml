@@ -1,0 +1,125 @@
+components:
+
+
+  agent_card_header: "partials/Agent/agent_card_header.html"
+
+
+  aside: "partials/Aside/aside.html"
+
+
+
+  
+  tools_card: "partials/CRM/tools_card.html"
+  memory_card: "partials/CRM/memory_card.html"
+  crm_dash: "partials/CRM/crm_dash.html"
+  agent_card: "partials/CRM/agent_card.html"
+  image_card: "partials/CRM/image_card.html"
+
+
+
+
+
+  api_overview: "partials/API/api_overview.html"
+  login_sessions: "partials/API/login_sessions.html"
+  api_key: "partials/API/api_key.html"
+  create_app_modal: "partials/modals/create_app_modal.html"
+  invite_modal: "partials/modals/invite_modal.html"
+  plans_modal: "partials/modals/plans_modal.html"
+  user_search_modal: "partials/modals/user_search_modal.html"
+  users_modal: "partials/modals/users_modal.html"
+  create_goal: "partials/modals/create_goal.html"
+  edit_goal: "partials/modals/edit_goal.html"
+
+
+  add_schedule_modal: "partials/modals/add_schedule_modal.html"
+  add_task_modal: "partials/modals/add_task_modal.html"
+  add_task_one_modal: "partials/modals/add_task_one_modal.html"
+  add_task_two_modal: "partials/modals/add_task_two_modal.html"
+  update_email_modal: "partials/modals/update_email_modal.html"
+  update_password_modal: "partials/modals/update_password_modal.html"
+  update_role_modal: "partials/modals/update_role_modal.html"
+  update_user_modal: "partials/modals/update_user_modal.html"
+  marketing_modal: "partials/modals/marketing_modal.html"
+  new_card_modal: "partials/modals/new_card_modal.html"
+  new_address_modal: "partials/modals/new_address_modal.html"
+  create_api_key_modal: "partials/modals/create_api_key_modal.html"
+  create_campaign_modal: "partials/modals/create_campaign_modal.html"
+  create_project_modal: "partials/modals/create_project_modal.html"
+  two_factor_modal: "partials/modals/two_factor_modal.html"
+  select_location_modal: "partials/modals/select_location_modal.html"
+  upload_file_modal: "partials/modals/upload_file_modal.html"
+  create_ticket_modal: "partials/modals/create_ticket_modal.html"
+  
+
+
+  activity_drawer: "partials/drawers/activity_drawer.html"
+  cart_drawer: "partials/drawers/cart_drawer.html"
+  chat_drawer: "partials/drawers/chat_drawer.html"
+  scroller: "partials/drawers/scroller.html"
+  world_agent_drawer: "partials/drawers/world_agent_drawer.html"
+  
+
+  event: "partials/Events/event.html"
+  page: "partials/Events/page.html"
+  dynamic_agent: "partials/Events/dynamic_agent.html"
+  agent_event: "partials/Events/agent_event.html"
+
+  error_404: "partials/Error/404.html"
+  error_500: "partials/Error/500.html"
+  error_403: "partials/Error/403.html"
+  
+
+  footer: "partials/Footer/footer.html"
+
+  header: "partials/Header/header.html"
+  middle: "partials/Home/middle.html"
+  profiler: "partials/Home/profiler.html"
+  paginate: "partials/Home/paginate.html"
+  modalhome: "partials/Home/modalhome.html"
+  breadcrumb: "partials/Home/breadcrumb.html"
+
+
+
+  create_goal: "partials/modals/create_goal.html"
+  edit_goal: "partials/modals/edit_goal.html"
+  
+
+
+  profile_detail: "partials/Profile/profile_detail.html"
+  profile_edit: "partials/Profile/profile_edit.html"
+  column_pricing: partials/Pricing/column_pricing.html
+
+
+
+  user_search_modal: "partials/Users/user_search_modal.html"
+  user_tab: "partials/Users/user_tab.html"
+  user_view_modal: "partials/Users/user_view_modal.html"
+  users_card: "partials/Users/users_card.html"
+  users_search: "partials/Users/users_search.html"
+  users_toolbar: "partials/Users/users_toolbar.html"
+  users_all: "partials/Users/users_all.html"
+  users_profile: "partials/Users/users_profile.html"
+
+
+
+
+  world_class_detail_side: "partials/Utilities_World/world_class_detail_side.html"
+  world_class_detail_step: "partials/Utilities_World/world_class_detail_step.html"
+  world_instance_utils: "partials/Utilities_World/world_instance_utils.html"
+  world_instance_detail: "partials/Utilities_World/world_instance_detail.html"
+  other_worlds: "partials/Utilities_World/other_worlds.html"
+  world_heading: "partials/Utilities_World/world_heading.html"
+  world_pricing: "partials/Utilities_World/world_pricing.html"
+
+
+
+  referrals_card: "partials/Referrals/referrals_card.html"
+  referrals_list: "partials/Referrals/referrals_list.html"
+
+
+
+  success: "partials/Support/success.html"
+  failed: "partials/Support/failed.html"
+
+
+

@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="col-md-6 col-xl-4">
+  <!--begin::Body-->
+  <div class="card" style="border-radius: 20px; height: 100%;">
+    <div class="d-flex flex-column h-100 p-3">
+        <!-- Avatar -->
+        <div class="symbol symbol-circle symbol-35px me-2">
+          {% if data.avatar %}
+          <img src="{{data.avatar.url}}" alt="img" />
+          {% else %}
+          <img src="{% static '/assets/media/avatars/300-2.jpg' %}" alt="img" />
+          {% endif %}
+        </div>
+
+        <!-- Agent -->
+        <a href="{% url 'agents:agent_rating' data.slug %}">
+          <div class="position-absolute top-0 end-0 mt-2 me-2">
+            <i class="ki-duotone ki-star text-warning fs-2"></i>
+          </div>
+        </a>
+
+        <!-- Title and Description -->
+        <div>
+          <a
+            href="{% url 'agents:agent_detail' data.slug %}"
+            class="text-gray-900 fw-bold text-center text-hover-primary fs-2"
+          >
+            {{data.name}}
+          </a>
+          <div class="text-dark-800 mb-5 fs-6">{{data.description}}</div>
+          <div class="text-muted fw-semibold mb-5">
+            {{data.created_at}} &#x2022; {{data.rating}} stars
+          </div>
+        </div>
+      </div>
+
+      <!--begin::Toolbar-->
+      <div class="d-flex align-items-end justify-content-between">
+        <!--begin::Tags-->
+        <div class="d-flex flex-wrap">
+          {% for tg in data.tags.all %}
+          <span class="btn btn-sm btn-light btn-color-muted m-2">
+            {{ tg.name }}
+          </span>
+          {% endfor %}
+        </div>
+        <!--end::Tags-->
+      
+        <!--begin::Symbol-->
+        <div class="symbol symbol-30px cursor-pointer m-3">
+          <div class="symbol-label bg-light">
+            <a href="#">
+              <i class="ki-solid ki-arrow-circle-left text-warning fs-3"></i>
+            </a>
+          </div>
+        </div>
+        <!--end::Symbol-->
+      <!--end::Toolbar-->
+    </div>
+    <!--end::Body-->
+  </div>
+</div>
+

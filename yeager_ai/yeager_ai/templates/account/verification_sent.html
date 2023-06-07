@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% translate "YeagerAI" %}{% endblock %}
+
+{% block content %}
+    
+    <div class=" d-flex justify-content-center align-item-center" style="width:100%;">
+    
+        <!--begin::Wrapper-->
+        <div class="card mx-auto my-auto col-md-4 col-sm-8 p-10">  
+            <form method="post">
+              <div class="text-center mb-11">
+                <image src="{%  static 'assets/media/logos/yeager.png' %}">
+                <!--begin::Title-->
+                <h1 class="text-dark fw-bolder mb-3"> <h1>{% translate "Verify Your E-mail Address" %}</h1></h1>
+                <!--end::Title-->
+              </div>
+      
+              <div class="text-center mb-11">
+                <!--begin::Title-->
+                <p>{% blocktranslate %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktranslate %}</p>
+                <!--end::Title-->
+              </div>
+
+            </form>
+        </div>
+
+    </div>
+    
+{% endblock %}

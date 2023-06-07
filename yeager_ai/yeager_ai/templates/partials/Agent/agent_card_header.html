@@ -1,0 +1,41 @@
+{% load static %}
+
+<!--begin::Heading-->
+ <div class="pb-10 pb-lg-15">
+    <!--begin::Title-->
+    <div class="symbol symbol-circle symbol-35px mb-3 ">
+      {% if data.avatar %}
+        <img src={{data.avatar.url}} alt="img" />
+      {% else %}  
+        <img src="{% static '/assets/media/avatars/300-2.jpg' %}"alt="img" />
+      {% endif %}
+      <a href="{% url 'agents:agent_detail' data.slug %}" class="text-gray-900 fw-bold text-center text-hover-primary fs-2 m-2">
+        {{data.name}}
+      </a>
+    </div>
+      <span
+        class="ms-1"
+        data-bs-toggle="tooltip"
+        aria-label="Billing is issued based on your selected account typ"
+        data-bs-original-title="Billing is issued based on your selected account typ"
+        data-kt-initialized="1"
+      >
+        <i class="ki-duotone ki-information-5 text-gray-500 fs-6"
+          ><span class="path1"></span><span class="path2"></span
+          ><span class="path3"></span></i
+      ></span>
+    </h2>
+    <!--end::Title-->
+
+    <!--begin::Notice-->
+    <div class="text fw-semibold fs-6 mb-4">
+      {{data.description}}
+      {% comment %} <a href="#" class="link-primary fw-bold">Help Page</a>. {% endcomment %}
+
+    </div>
+    <div class="text-gray-800 ">
+      <span class="text-muted fw-semibold fs-6" > Created</span> {{data.created_at}} &#x2022; {{data.rating}} <span class="text-muted fw-semibold fs-6" > stars </span>
+    </div>
+    <!--end::Notice-->
+  </div>
+  <!--end::Heading-->

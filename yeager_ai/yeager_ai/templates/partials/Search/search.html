@@ -1,0 +1,157 @@
+{% load static %}
+
+<div
+  id="kt_modal_users_search_handler"
+  data-kt-search-keypress="true"
+  data-kt-search-min-length="2"
+  data-kt-search-enter="enter"
+  data-kt-search-layout="inline"
+  data-kt-search="true"
+  class=""
+>
+  <!--begin::Form-->
+  <form
+    data-kt-search-element="form"
+    class="w-100 position-relative mb-5"
+    autocomplete="off"
+  >
+
+    <!--begin::Hidden input(Added to disable form autocomplete)-->
+    <input type="hidden" />
+    <!--end::Hidden input-->
+
+    <!--begin::Icon-->
+    <i
+      class="ki-duotone ki-magnifier fs-2 fs-lg-1 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"
+      ><span class="path1"></span><span class="path2"></span
+    ></i>
+    <!--end::Icon-->
+
+    <!--begin::Input-->
+    <input
+      type="text"
+      class="form-control form-control-lg form-control-solid px-15"
+      name="search"
+      value="{{ search_query }}"
+      placeholder="Search..."
+      data-kt-search-element="input"
+    />
+    <!--end::Input-->
+
+
+    <!--begin::Reset-->
+    <span
+      class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 me-5 d-none"
+      data-kt-search-element="clear"
+    >
+      <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0"
+        ><span class="path1"></span><span class="path2"></span
+      ></i>
+    </span>
+    <!--end::Reset-->
+  </form>
+  <!--end::Form-->
+
+  <!--begin::Wrapper-->
+  <div class="py-5">
+
+    <!--begin::Results(add d-none to below element to hide the users list by default)-->
+    <div data-kt-search-element="results" class="d-none">
+      
+    </div>
+    <!--end::Results-->
+    <!--begin::Empty-->
+    <div data-kt-search-element="empty" class="text-center d-none">
+      <!--begin::Message-->
+      <div class="fw-semibold py-10">
+        <div class="text-gray-600 fs-3 mb-2">Not found</div>
+
+        <div class="text-muted fs-6">Try again...</div>
+      </div>
+      <!--end::Message-->
+
+      <!--begin::Illustration-->
+      <div class="text-center px-5">
+        <img
+          src="{% static  'assets/media/illustrations/sigma-1/1.png' %}"
+          alt=""
+          class="h-80px"
+        />
+      </div>
+      <!--end::Illustration-->
+    </div>
+    <!--end::Empty-->
+  </div>
+  <!--end::Wrapper-->
+</div>
+
+{% block javascript %}
+<script>
+  const searchForm = document.querySelector('[data-kt-search-element="form"]');
+  const searchInput = document.querySelector('[data-kt-search-element="input"]');
+  const searchResults = document.querySelector('[data-kt-search-element="results"]');
+  const searchEmpty = document.querySelector('[data-kt-search-element="empty"]');
+
+  searchForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const query = searchInput.value.trim();
+
+    if (query.length >= 2) {
+      const searchUrl = "{% url 'worlds:world_search' %}" + "?search=" + encodeURIComponent(query);
+
+      fetch(searchUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length > 0) {
+            // Clear previous results
+            searchResults.innerHTML = '';
+
+            // Display search results
+            data.forEach((result) => {
+              const resultItem = document.createElement('div');
+              resultItem.classList.add('rounded', 'd-flex', 'flex-stack', 'bg-active-lighten', 'p-4');
+              resultItem.setAttribute('data-user-id', result.id);
+              
+              const avatar = document.createElement('div');
+              avatar.classList.add('symbol', 'symbol-35px', 'symbol-circle');
+              const thumbnailImg = document.createElement('img');
+              thumbnailImg.alt = 'Pic';
+              thumbnailImg.src = result.thumbnail;
+              avatar.appendChild(thumbnailImg);
+              resultItem.appendChild(avatar);
+
+              // Create result item content
+              const details = document.createElement('div');
+              details.classList.add('ms-5');
+
+              const urlDetail = "{% url 'worlds:world_detail' slug='__SLUG__' %}".replace('__SLUG__', result.slug);
+              details.innerHTML = `
+                <a href="${urlDetail}" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">${result.name}</a>
+                <div class="fw-semibold text-muted">${result.creator.first_name} ${result.creator.last_name}</div>
+              `;
+
+              resultItem.appendChild(details);
+              searchResults.appendChild(resultItem);
+            });
+
+            // Hide the empty message
+            searchEmpty.classList.add('d-none');
+            // Show the search results
+            searchResults.classList.remove('d-none');
+          } else {
+            // Hide the search results
+            searchResults.classList.add('d-none');
+            // Show the empty message
+            searchEmpty.classList.remove('d-none');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching search results:', error);
+        });
+    }
+  });
+</script>
+{% endblock javascript %}
+
+{% comment %}  {% endcomment %}

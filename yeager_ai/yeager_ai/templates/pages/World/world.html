@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+    {% if user and worlds %}
+    
+    {% #aside user=user data=worlds%}
+    {% /aside %}
+    {% endif %}
+
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+    {% if user %}
+    {% #header user=user heading="World Explore" %}
+    {% /header %}
+    {% endif %}
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Container-->
+    <div class="container-xxl" id="kt_content_container">   
+       
+
+
+        <div class="row g-6 g-xl-9">
+            {% if worlds %}
+                {% for data in worlds %}
+                {% #image_card data=data%}
+                {% /image_card %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    
+
+        
+        <!--end::Container-->
+    </div>
+    </div>
+    {% #modalhome%} 
+    {% /modalhome%} 
+    {% #footer %}
+    {% /footer %}
+</div>
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% endblock modal %} 

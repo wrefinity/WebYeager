@@ -1,0 +1,197 @@
+{% load static %}
+<div
+      class="tab-pane fade active show"
+      id="kt_user_event_stream"
+      role="tabpanel"
+    >
+      <div class="flex-lg-row-fluid">
+        <!--begin:::Tabs-->
+        <div class="card ">
+          <ul
+            class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold pb-0 p-8"
+            role="tablist"
+          >
+            <!--begin:::Tab item-->
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link text-active-primary pb-4 active"
+                data-bs-toggle="tab"
+                href="#kt_user_view_iframe"
+                aria-selected="true"
+                role="tab"
+                >Iframe</a
+              >
+            </li>
+            <!--end:::Tab item-->
+
+            <!--begin:::Tab item-->
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link text-active-primary pb-4"
+                data-bs-toggle="tab"
+                href="#kt_user_view_world_view"
+                aria-selected="false"
+                role="tab"
+                >View</a
+              >
+            </li>
+            <!--end:::Tab item-->
+          </ul>
+          <!--end:::Tabs-->
+
+          <!--begin:::Tab content-->
+          <div class="tab-content" id="myTabContent">
+            <!--begin:::Tab pane-->
+            <div
+              class="tab-pane fade active show"
+              id="kt_user_view_iframe"
+              role="tabpanel"
+            >
+              <!--begin::Card-->
+
+              <!--begin::Card header-->
+
+              <!--end::Card header-->
+
+              {% if data.bit16_url %}
+              <iframe
+                loading="lazy"
+                src="{{data.bit16_url}}"
+                name="world instance"
+                scrolling="No"
+                height="500px"
+                width="100%"
+                style="border: none"
+              ></iframe>
+              {% endif %}
+              
+
+              <div class="card-footer pt-4" id="kt_chat_messenger_footer">
+                <!--begin::Input-->
+                <textarea
+                  class="form-control form-control form-control-solid mb-2"
+                  data-kt-element="input"
+                  placeholder="What would you like to do?"
+                  data-kt-autosize="true"
+                >
+                </textarea>
+                <!--end::Input-->
+
+                <!--begin:Toolbar-->
+                <div class="d-flex flex-stack">
+                  <!--begin::Actions-->
+                  <div class="d-flex align-items-center me-2">
+                    <button
+                      class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                      type="button"
+                      data-bs-toggle="tooltip"
+                      aria-label="Coming soon"
+                      data-bs-original-title="Coming soon"
+                    >
+                      <i class="ki-duotone ki-paper-clip fs-3"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                      type="button"
+                      data-bs-toggle="tooltip"
+                      aria-label="Coming soon"
+                      data-bs-original-title="Coming soon"
+                    >
+                      <i class="ki-duotone ki-exit-up fs-3"
+                        ><span class="path1"></span><span class="path2"></span
+                      ></i>
+                    </button>
+                  </div>
+                  <!--end::Actions-->
+
+                  <!--begin::Send-->
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-kt-element="send"
+                  >
+                    Send
+                  </button>
+                  <!--end::Send-->
+                </div>
+                <!--end::Toolbar-->
+              </div>
+              <!--end::Card-->
+            </div>
+            <!--end:::Tab pane-->
+
+            <!--begin:::Tab pane-->
+            <div
+              class="tab-pane fade"
+              id="kt_user_view_world_view"
+              role="tabpanel"
+            >
+              <!--begin::Card body-->
+              <div class="hover-scroll-y h-650px px-5">
+              <div class="tab-content">
+                  <div class="timeline p-5">
+                    <!-- timeline components here -->
+                   {% include '../Events/event.html' %}
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer pt-4" id="kt_chat_messenger_footer">
+                <!--begin::Input-->
+                <textarea
+                  class="form-control form-control form-control-solid mb-2"
+                  data-kt-element="input"
+                  placeholder="What would you like to do?"
+                  data-kt-autosize="true"
+                >
+                </textarea>
+                <!--end::Input-->
+
+                <!--begin:Toolbar-->
+                <div class="d-flex flex-stack">
+                  <!--begin::Actions-->
+                  <div class="d-flex align-items-center me-2">
+                    <button
+                      class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                      type="button"
+                      data-bs-toggle="tooltip"
+                      aria-label="Coming soon"
+                      data-bs-original-title="Coming soon"
+                    >
+                      <i class="ki-duotone ki-paper-clip fs-3"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                      type="button"
+                      data-bs-toggle="tooltip"
+                      aria-label="Coming soon"
+                      data-bs-original-title="Coming soon"
+                    >
+                      <i class="ki-duotone ki-exit-up fs-3"
+                        ><span class="path1"></span><span class="path2"></span
+                      ></i>
+                    </button>
+                  </div>
+                  <!--end::Actions-->
+
+                  <!--begin::Send-->
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-kt-element="send"
+                  >
+                    Send
+                  </button>
+                  <!--end::Send-->
+                </div>
+                <!--end::Toolbar-->
+              </div>
+              <!--end::Card body-->
+            </div>
+            <!--end:::Tab pane-->
+          </div>
+          <!--end:::Tab content-->
+        </div>
+      </div>
+    </div>

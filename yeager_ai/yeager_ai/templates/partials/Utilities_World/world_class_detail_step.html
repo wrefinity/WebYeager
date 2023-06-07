@@ -1,0 +1,195 @@
+{% load static %}
+
+<div
+  class="card d-flex justify-content-center justify-content-xl-start flex-row-auto p-10 w-100 w-xl-300px w-xxl-400px"
+>
+  <div class="pb-10 pb-lg-8">
+    <!--begin::Title-->
+    <h2 class="fw-bold d-flex align-items-center text-dark">
+      Steps
+
+      <span
+        class="ms-1"
+        data-bs-toggle="tooltip"
+        aria-label="Billing is issued based on your selected account typ"
+        data-bs-original-title="Billing is issued based on your selected account typ"
+        data-kt-initialized="1"
+      >
+        <i class="ki-duotone ki-information-5 text-gray-500 fs-6"
+          ><span class="path1"></span><span class="path2"></span
+          ><span class="path3"></span></i
+      ></span>
+    </h2>
+    <!--end::Title-->
+
+    <!--begin::Notice-->
+    <div class="text-muted fw-semibold fs-6">
+      If you need more info, please check out
+      <a href="#" class="link-primary fw-bold">Help Page</a>.
+    </div>
+    <!--end::Notice-->
+  </div>
+
+  <!--begin::Wrapper-->
+  <div class="card-body px-6 px-lg-10 px-xxl-15 py-7">
+    <!--begin::Nav-->
+    <div class="stepper-nav">
+      <!--begin::Step 1-->
+      <div class="stepper-item" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper">
+          <!--begin::Icon-->
+          <div class="stepper-icon w-40px h-40px">
+            <i class="ki-duotone ki-check fs-2 stepper-check"></i>
+            <span class="stepper-number">1</span>
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Label-->
+          <div class="stepper-label">
+            <h3 class="stepper-title">Connect</h3>
+
+            <div class="stepper-desc fw-semibold">
+              Connect Github
+            </div>
+          </div>
+          <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+      </div>
+      <!--end::Step 1-->
+
+      <!--begin::Step 2-->
+      <div class="stepper-item" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper">
+          <!--begin::Icon-->
+          <div class="stepper-icon w-40px h-40px">
+            <i class="ki-duotone ki-check fs-2 stepper-check"></i>
+            <span class="stepper-number">2</span>
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Label-->
+          <div class="stepper-label">
+            <h3 class="stepper-title">Prompt</h3>
+            <div class="stepper-desc fw-semibold">
+              Follow Prompt and displays
+            </div>
+          </div>
+          <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+      </div>
+      <!--end::Step 2-->
+
+      <!--begin::Step 3-->
+      <div class="stepper-item" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper">
+          <!--begin::Icon-->
+          <div class="stepper-icon w-40px h-40px">
+            <i class="ki-duotone ki-check fs-2 stepper-check"></i>
+            <span class="stepper-number">3</span>
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Label-->
+          <div class="stepper-label">
+            <h3 class="stepper-title">Info</h3>
+            <div class="stepper-desc fw-semibold">
+              Your World Related Info
+            </div>
+          </div>
+          <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+      </div>
+      <!--end::Step 3-->
+
+      <!--begin::Step 4-->
+      <div class="stepper-item" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper">
+          <!--begin::Icon-->
+          <div class="stepper-icon w-40px h-40px">
+            <i class="ki-duotone ki-check fs-2 stepper-check"></i>
+            <span class="stepper-number">4</span>
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Label-->
+          <div class="stepper-label">
+            <h3 class="stepper-title">Billing Details</h3>
+            <div class="stepper-desc fw-semibold">Set Your Payment Methods</div>
+          </div>
+          <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+      </div>
+      <!--end::Step 4-->
+
+      <!--begin::Step 5-->
+      <div class="stepper-item mark-completed" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper">
+          <!--begin::Icon-->
+          <div class="stepper-icon w-40px h-40px">
+            <i class="ki-duotone ki-check fs-2 stepper-check"></i>
+            <span class="stepper-number">5</span>
+          </div>
+          <!--end::Icon-->
+
+          <!--begin::Label-->
+          <div class="stepper-label">
+            <h3 class="stepper-title">Completed</h3>
+            <div class="stepper-desc fw-semibold">Woah, Your World</div>
+          </div>
+          <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+      </div>
+      <!--end::Step 5-->
+    </div>
+    <!--end::Nav-->
+  </div>
+  <div>
+    {% for inst in data %}
+    <a href="{% url 'worlds:world_instance_detail' inst.slug %}">
+      <button
+        type="button"
+        class="btn btn-lg btn-primary"
+        data-kt-stepper-action="next"
+      >
+        {{inst.name}} world
+        <i class="ki-duotone ki-arrow-right fs-4 ms-1 me-0">
+          <span class="path1"> </span>
+          <span class="path2"> </span>
+        </i>
+      </button>
+    </a>
+    </br> </br>
+
+    {% endfor %}
+    
+
+    <!--end::Wrapper-->
+  </div>
+</div>
+ 

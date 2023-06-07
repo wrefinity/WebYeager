@@ -1,0 +1,58 @@
+
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+{% if user %}
+    
+{% #aside user=user%}
+{% /aside %}
+{% endif %}
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+
+    {% if user %}
+    {% #header user=user heading="Server Error" %}
+    {% /header %}
+    {% endif %}
+    
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        
+        <!--begin::Container-->
+        <div class="container-xxl" id="kt_content_container"> 
+          {% #error_500 %}
+          {% /error_500 %}
+
+
+    
+    </div>
+    </div>
+
+    {% #footer %}
+    {% /footer %}
+</div>
+
+
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% #create_goal data="db_data"%}
+{% /create_goal%}
+{% #edit_goal data="db_data"%}
+{% /edit_goal%}
+
+{% endblock modal %} 

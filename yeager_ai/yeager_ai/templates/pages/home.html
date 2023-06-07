@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+{% if user %}
+{% #aside user=user%}
+{% /aside %}
+{% endif %}
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+    {% #header heading="Home" %}
+    {% /header %}
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Container-->
+    <div class="container-xxl" id="kt_content_container">  
+
+
+            {% #event %}
+            {% /event %}
+
+
+        <!--end::Container-->
+    </div>
+    </div>
+
+    {% #footer %}
+    {% /footer %}
+
+</div>
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% #world_agent_drawer data="db_data"%}
+{% /world_agent_drawer data="db_data"%}
+
+{% endblock drawer %} 
+
+{% block modal %}
+{% #create_app_modal data="db_data"%}
+{% /create_app_modal%}
+{% #invite_modal data="db_data"%}
+{% /invite_modal%}
+{% #plans_modal data="db_data"%}
+{% /plans_modal%}
+{% #user_search_modal data="db_data"%}
+{% /user_search_modal%}
+{% #users_modal data="db_data"%}
+{% /users_modal %}
+{% endblock modal %} 

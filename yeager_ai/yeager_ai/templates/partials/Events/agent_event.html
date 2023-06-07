@@ -1,0 +1,261 @@
+{% load static %}
+
+  <div class="card-body p-9 pt-4"></div>
+
+
+<!-- WebSocket script -->
+<script>
+  const agentEventSocket = new WebSocket("ws://localhost:7456/ws");
+
+  agentEventSocket.onmessage = function (event) {
+    // Process the received message
+    const data = JSON.parse(event.data);
+    // Define an array of icon URLs
+    const iconUrls = [
+      "{% static 'assets/media/svg/avatars/026-boy-10.svg' %}",
+      "{% static 'assets/media/svg/avatars/027-girl-15.svg' %}",
+      "{% static 'assets/media/svg/avatars/011-boy-5.svg' %}",
+      "{% static 'assets/media/svg/avatars/030-girl-17.svg' %}",
+      "{% static 'assets/media/svg/avatars/040-boy-17.svg' %}",
+      "{% static 'assets/media/svg/avatars/023-girl-13.svg' %}",
+
+      // more icon URLs
+    ];
+
+    // Generate a random index to select an icon URL from the array
+    const randomIndex = Math.floor(Math.random() * iconUrls.length);
+    const randomIconUrl = iconUrls[randomIndex];
+
+    // Create a new timeline item
+    data.nearby_entities.forEach(function (entity) {
+      const agentItem = document.createElement("div");
+
+      // Set the content of the timeline item
+      agentItem.innerHTML = `
+      <div
+      class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold overflow-auto"
+      data-kt-menu="true"
+    >
+      <!--begin::Menu item-->
+      <div
+        class="menu-item menu-sub-indention menu-accordion"
+        data-kt-menu-trigger="click"
+      >
+        <!--begin::Menu link-->
+        <a href="#" class="menu-link py-3">
+          <span class="menu-icon">
+            <div
+              class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2"
+              style="margin-left: 70px"
+            >
+              <!--begin::User-->
+              <div class="symbol symbol-40px me-5">
+                <img
+                  src="${randomIconUrl}"
+                  class="h-50 align-self-center"
+                  alt=""
+                />
+              </div>
+            </div>
+          </span>
+
+          <span class="menu-title">${entity.name}</span>
+          <span class="menu-title">${data.created_at}</span>
+
+          <span class="menu-arrow"></span>
+        </a>
+        <!--end::Menu link-->
+
+        <!--begin::Menu sub-->
+        <div class="menu-sub menu-sub-accordion pt-3">
+          <!--begin::Menu item-->
+          <div class="menu-item">
+            <div class="fv-row fv-plugins-icon-container">
+              <!--begin::Row-->
+              <div class="row">
+                <!--begin::Col-->
+                <div class="col-lg-6">
+                  <!--begin::Option-->
+                  <div class="text-muted fs-6 pb-4">Task list</div>
+                  <label>
+                    <div class="d-flex flex-column">
+                      <li class="d-flex align-items-center py-2">
+                        <span class="bullet bullet-vertical me-5"></span>Held By - ${entity.held_by}
+                      </li>
+                    </div>
+                  </label>
+                  <!--end::Option-->
+                  <div
+                    class="fv-plugins-message-container invalid-feedback"
+                  ></div>
+                </div>
+                <!--end::Col-->
+
+                <!--begin::Col-->
+                <div class="col-lg-6">
+                  <!--begin::Option-->
+                  <div class="text-muted fs-6 pb-4">Location</div>
+                  <label>
+                    <!--begin::Info-->
+                    <div class="d-flex flex-column">
+                      <li class="d-flex align-items-center py-2">
+                        <span class="bullet bullet-dot me-5"></span>
+                        ${entity.location}
+                      </li>
+                    </div>
+                  </label>
+                  <!--end::Option-->
+                  <div
+                    class="fv-plugins-message-container invalid-feedback"
+                  ></div>
+                </div>
+                <!--end::Col-->
+              </div>
+              <!--end::Input group-->
+            </div>
+
+            <div class="tab-content">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <!--begin::Timeline line-->
+                  <div class="timeline-line w-40px"></div>
+                  <!--end::Timeline line-->
+                  <!--begin::Timeline content-->
+                  <div class="timeline-content mb-10 mt-n1">
+                    <!--begin::Timeline details-->
+                    <!--begin::Menu-->
+                    <div
+                      class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold"
+                      data-kt-menu="true"
+                    >
+                      <!--begin::Menu item-->
+                      <div
+                        class="menu-item menu-sub-indention menu-accordion"
+                        data-kt-menu-trigger="click"
+                      >
+                        <!--begin::Menu link-->
+                        <a href="#" class="menu-link py-3">
+                          <span class="menu-icon">
+                            <div
+                              class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2"
+                              style="margin-left: 70px"
+                            >
+                              <!--begin::User-->
+                              <div class="symbol symbol-circle symbol-25px">
+                                <img
+                                  src="${randomIconUrl}"
+                                  alt="img"
+                                />
+                              </div>
+                              <!--end::User-->
+
+                              <!--begin::User-->
+                              <div class="symbol symbol-circle symbol-25px">
+                                <img
+                                  src="${randomIconUrl}"
+                                  alt="img"
+                                />
+                              </div>
+                              <!--end::User-->
+                            </div>
+                          </span>
+
+                          <span class="menu-title">${data.event_type}</span>
+                          <span class="menu-title"
+                            >${data.created_at}</span
+                          >
+
+                          <span class="menu-arrow"></span>
+                        </a>
+                        <!--end::Menu link-->
+
+                        <!--begin::Menu sub-->
+                        <div class="menu-sub menu-sub-accordion pt-3">
+                            <!-- Menu item -->
+                            <div class="menu-item">
+                              <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
+                                  <span class="text-gray-600 fw-semibold">${data.message}</span>
+                                </div>
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
+                                  <span class="text-gray-600 date fw-semibold">${data.created_at}</span>
+                                </div>
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
+                                  <span class="text-gray-600 fw-semibold">${data.sender_id}</span>
+                                </div>
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
+                                  <span class="text-gray-600 fw-semibold">${data.object_id}</span>
+                                </div>
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
+                                  <span class="text-gray-600 fw-semibold">${data.target_id}</span>
+                                </div>
+                                <div class="d-flex">
+                                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
+                                  <span class="text-gray-600 fw-semibold">${data.recipient_agent_id}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Menu item -->
+                          </div>
+                        <!--end::Menu sub-->
+                      </div>
+
+                      <!--end::Menu item-->
+                    </div>
+                    <!--end::Menu-->
+                    <!--end::Timeline details-->
+                  </div>
+                  <!--end::Timeline content-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end::Menu item-->
+
+          <!--begin::Menu item-->
+
+          <!--end::Menu item-->
+        </div>
+        <!--end::Menu sub-->
+
+        <!-- end::Card-->
+        <!--end::Menu item-->
+      </div>
+      <!--end::Menu-->
+      <!--end::Timeline details-->
+    </div>
+      `;
+
+      // Append the new item to the card-body
+      const cardBody = document.querySelector(".card-body");
+      cardBody.appendChild(agentItem);
+
+      const menuTrigger = agentItem.querySelector(
+        '[data-kt-menu-trigger="click"]'
+      );
+      const menu = new KTMenu(menuTrigger.parentElement);
+
+      // Initialize nested menus within the new item
+      const nestedMenuItems = agentItem.querySelectorAll(
+        ".menu-sub .menu-item"
+      );
+      nestedMenuItems.forEach((nestedItem) => {
+        const nestedMenuTrigger = nestedItem.querySelector(
+          '[data-kt-menu-trigger="click"]'
+        );
+        const nestedMenu = new KTMenu(nestedMenuTrigger.parentElement);
+      });
+    });
+  };
+  // Reinitialize the KMenu component for all existing timeline items
+  const existingMenuItems = document.querySelectorAll(".menu-item");
+  existingMenuItems.forEach((item) => {
+    const menuTrigger = item.querySelector('[data-kt-menu-trigger="click"]');
+    const menu = new KTMenu(menuTrigger.parentElement);
+  });
+</script>

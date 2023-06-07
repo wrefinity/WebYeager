@@ -1,0 +1,74 @@
+{% extends "base.html" %} 
+{% load slippers %} 
+{% block content %}
+{% comment %} aside goes here  {% endcomment %}
+
+
+{% if user and all_objects %}
+    
+{% #aside user=user data=all_objects%}
+{% /aside %}
+{% endif %}
+
+
+<div class="wrapper d-flex  flex-column flex-row-fluid" id="kt_wrapper">
+    {% if user %}
+    {% #header user=user heading="World Explore" %}
+    {% /header %}
+    {% endif  %}
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        
+    <!--begin::Container-->
+    
+    <div class="container-xxl" id="kt_content_container"> 
+
+        <div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid gap-10" id="kt_create_account_stepper" data-kt-stepper="true">
+    
+        {% if worlds %}
+        {% #world_class_detail_side data=worlds %}
+        {% /world_class_detail_side %}
+        {% endif %}
+
+        {% if world_instances %}
+        {% #world_class_detail_step data=world_instances %}
+        {% /world_class_detail_step %}
+        {% endif %}
+        <!--end::Container-->
+        
+        </div>
+
+
+    {% #middle name="View world instances"%}
+    {% /middle %}
+<div class="row g-6 g-xl-9">
+    {% if world_instances %}
+    {% for instances in world_instances %}
+    {% #other_worlds data=instances world=worlds type=instances.name price="free" stars="40" status="View World" %}
+    {% /other_worlds %}
+    {% endfor %}
+    {% endif %}
+</div>
+
+</div>
+</div>
+{% #footer %}
+{% /footer %}
+</div>
+
+{% endblock content %}
+
+{% block drawer %}
+{% #activity_drawer data="db_data"%}
+{% /activity_drawer%}
+
+{% #cart_drawer data="db_data"%}
+{% /cart_drawer%}
+{% #chat_drawer data="db_data"%}
+{% /chat_drawer%}
+{% #scroller data="db_data"%}
+{% /scroller%}
+{% endblock drawer %} 
+
+{% block modal %}
+
+{% endblock modal %} 

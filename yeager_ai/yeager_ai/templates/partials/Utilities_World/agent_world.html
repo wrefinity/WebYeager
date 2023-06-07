@@ -1,0 +1,79 @@
+{% load static %}
+
+<div class="tab-pane fade" id="kt_user_view_agent" role="tabpanel">
+  <div class="card w-100">
+    <!--begin::Card header-->
+    <div class="card-header">
+      <!--begin::Card title-->
+      <ul
+        class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold pb-0 px-0 p-8"
+        role="tablist"
+      >
+        <!--begin:::Tab item-->
+        <li class="nav-item" role="presentation">
+          <a class="nav-link text-active-primary pb-4 active">Agents</a>
+        </li>
+        <!--end:::Tab item-->
+
+        <!--end:::Tab item-->
+      </ul>
+      <!--end::Card title-->
+    </div>
+    <div>
+      <div class="hover-scroll-y h-650px px-5">
+        {% include '../Events/agent_event.html' %}</div>
+
+      <!--end::Card header-->
+      <div class="card-footer pt-4" id="kt_chat_messenger_footer">
+        <!--begin::Input-->
+        <textarea
+          class="form-control form-control form-control-solid mb-2"
+          data-kt-element="input"
+          placeholder="What would you like to do?"
+          data-kt-autosize="true"
+        >
+        </textarea>
+        <!--end::Input-->
+
+        <!--begin:Toolbar-->
+        <div class="d-flex flex-stack">
+          <!--begin::Actions-->
+          <div class="d-flex align-items-center me-2">
+            <button
+              class="btn btn-sm btn-icon btn-active-light-primary me-1"
+              type="button"
+              data-bs-toggle="tooltip"
+              aria-label="Coming soon"
+              data-bs-original-title="Coming soon"
+            >
+              <i class="ki-duotone ki-paper-clip fs-3"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-icon btn-active-light-primary me-1"
+              type="button"
+              data-bs-toggle="tooltip"
+              aria-label="Coming soon"
+              data-bs-original-title="Coming soon"
+            >
+              <i class="ki-duotone ki-exit-up fs-3"
+                ><span class="path1"></span><span class="path2"></span
+              ></i>
+            </button>
+          </div>
+          <!--end::Actions-->
+
+          <!--begin::Send-->
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-kt-element="send"
+          >
+            Send
+          </button>
+          <!--end::Send-->
+        </div>
+        <!--end::Toolbar-->
+      </div>
+    </div>
+  </div>
+</div>

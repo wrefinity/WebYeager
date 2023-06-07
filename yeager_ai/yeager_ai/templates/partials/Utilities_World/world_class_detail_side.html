@@ -1,0 +1,159 @@
+{% load static %}
+
+<div
+  class="card mx-auto p-10 w-100 h-100 py-10 fv-plugins-bootstrap5 fv-plugins-framework"
+>
+  <div class="current" data-kt-stepper-element="content">
+    <!--begin::Wrapper-->
+    <div class="w-100">
+      <!--begin::Heading-->
+      <div class="pb-10 pb-lg-15">
+        <!--begin::Title-->
+        <h2 class="fw-bold d-flex align-items-center text-dark">
+          {{data.name}}
+
+          <span
+            class="ms-1"
+            data-bs-toggle="tooltip"
+            aria-label="Billing is issued based on your selected account typ"
+            data-bs-original-title="Billing is issued based on your selected account typ"
+            data-kt-initialized="1"
+          >
+            <i class="ki-duotone ki-information-5 text-gray-500 fs-6"
+              ><span class="path1"></span><span class="path2"></span
+              ><span class="path3"></span></i
+          ></span>
+        </h2>
+        <!--end::Title-->
+
+        <!--begin::Notice-->
+        <div class="text fw-semibold fs-6">
+          {{data.description}}
+
+          {% comment %}  <a href="#" class="link-primary fw-bold">Help Page</a>. {% endcomment %}
+        </div>
+        <div class="text-gray-800 mb-6">
+          <span class="text-muted fw-semibold fs-6"> Created</span> {{data.created_at}} 
+        </div>
+        <!--end::Notice-->
+      </div>
+      <!--end::Heading-->
+
+      <!--begin::Input group-->
+      <div class="fv-row fv-plugins-icon-container">
+        <!--begin::Row-->
+        <div class="row">
+          <!--begin::Col-->
+          <div class="col-lg-6">
+            <!--begin::Option-->
+            <div class="text-dark fs-5 pb-7">
+              Agent in this World
+            </div>
+            <label>
+
+            {% for agent in data.agent_classes.all %}
+              <div class="d-flex flex-stack mb-3">
+                <!--begin::Symbol-->
+                <div class="symbol symbol-circle symbol-35px me-5">
+                  {% if agent.avatar %}
+                  <img
+                    src="{{agent.avatar.url}}"
+                    class="h-35 align-self-center"
+                    alt="img"
+                  />
+                  {% else %}
+                  <img
+                    src="{% static '/assets/media/avatars/300-1.jpg' %}"
+                    class="h-35 align-self-center"
+                    alt="img"
+                  />
+                  {% endif %}
+                </div>
+                <!--end::Symbol-->
+
+                <!--begin::Section-->
+                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                  <!--begin:Author-->
+                  <div class="flex-grow-1 me-2">
+                    <a
+                      href="#"
+                      class="text-gray-800 text-hover-primary fs-6 fw-bold"
+                      >
+                      {% comment %} {{data.agent_classes.name}} {% endcomment %}
+                      {{agent.name}}
+                      </a
+                    >
+                  </div>
+                  <!--end:Author-->
+                </div>
+                <!--end::Section-->
+              </div>
+            {% endfor %}
+
+
+
+            </label>
+            <!--end::Option-->
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+          <!--end::Col-->
+
+          <!--begin::Col-->
+          <div class="col-lg-6">
+            <!--begin::Option-->
+            <div class="text-dark fs-5 pb-7">
+              Object in this world
+            </div>
+            <label>
+              {% for obj in data.object_classes.all %}
+              <div class="d-flex flex-stack mb-3">
+                <!--begin::Symbol-->
+                
+                <!--end::Symbol-->
+
+                <!--begin::Section-->
+                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                  <!--begin:Author-->
+                  <div class="flex-grow-1 me-2">
+                    <!--begin::Symbol-->
+                    <div class="symbol symbol-circle symbol-35px me-5">
+                      {% if obj.avatar %}
+                      <img
+                        src="{{obj.avatar.url}}"
+                        class="h-35 align-self-center"
+                        alt="img"
+                      />
+                      {% else %}
+                      <img
+                        src="{% static '/assets/media/avatars/300-1.jpg' %}"
+                        class="h-35 align-self-center"
+                        alt="img"
+                      />
+                      {% endif %}
+                    </div>
+                    <!--end::Symbol-->
+                    <a
+                      href="#"
+                      class="text-gray-800 text-hover-primary fs-6 fw-bold"
+                      >{{obj.name}}</a
+                    >
+                  </div>
+                  <!--end:Author-->
+
+                </div>
+                <!--end::Section-->
+              </div>
+              {% endfor %}
+
+            </label>
+            <!--end::Option-->
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+          <!--end::Col-->
+        </div>
+        <!--end::Input group-->
+      </div>
+      <!--end::Wrapper-->
+    </div>
+  </div>
+</div>
