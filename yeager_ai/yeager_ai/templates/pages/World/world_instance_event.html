@@ -23,17 +23,22 @@
         <!--begin::Container-->
         <div class="container-xxl" id="kt_content_container"> 
 
-            <div hx-ws="connect:ws://localhost:8000/ws/world/" >
-            </div>
+        
 
-            <div id='timeline'></div>
+        {% #world_instance_detail %}
+        {% /world_instance_detail %}
 
-        {% comment %} {% if world_instance %}
+        
+    
+    </div>
+    </div>
 
+
+         {% comment %} {% if world_instance %}
         {% #world_instance_detail data=world_instance %}
         {% /world_instance_detail %}
 
-        {% endif %} {% endcomment %}
+        {% endif %}  {% endcomment %}
 
         
 
@@ -52,7 +57,7 @@
       // Process the received message
       console.log(event)
     }
-</script> {% endcomment %}
+</script>   {% endcomment %}
 
 {% endblock content %}
 
@@ -76,3 +81,4 @@
 {% /edit_goal%}
 
 {% endblock modal %} 
+

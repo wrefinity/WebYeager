@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.http import HttpResponse
 from django.conf import settings
-from .tasks import run_socket_task, get_data_from_api
+from .tasks import fetch_data_from_api, run_socket_task, get_data_from_api
 from .forms import WorldInstanceForm
 from websockets.server import serve
 from .models import WorldClass, WorldInstance, Tag
