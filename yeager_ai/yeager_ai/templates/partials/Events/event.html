@@ -4,17 +4,14 @@
   <!-- timeline components here -->
 </div>
 
-
 <!-- WebSocket script -->
+
 <script>
-  const eventSocket = new WebSocket(`ws://${window.location.host}/ws/world/`);
+  const eventSocket = new WebSocket("ws://localhost:7456/ws");
 
   eventSocket.onmessage = function (event) {
     // Process the received message
-    const bat = JSON.parse(event.data);
-    const data = bat.eventData;
-    
-
+    const data = JSON.parse(event.data);
     // Define an array of icon URLs
     const iconUrls = [
       "{% static 'assets/media/svg/figma/chat.svg' %}",
@@ -124,13 +121,16 @@
     timeline.appendChild(timelineItem);
 
     // Initialize the KMenu component for the new timeline item
-    const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
+    const menuTrigger = document.querySelector(
+      '[data-kt-menu-trigger="click"]'
+    );
     const menu = new KTMenu(menuTrigger.parentElement);
+
+    // Reinitialize the KMenu component for all existing timeline items
+    const existingMenuItems = timeline.querySelectorAll(".menu-item");
+    existingMenuItems.forEach((item) => {
+      const menuTrigger = item.querySelector('[data-kt-menu-trigger="click"]');
+      const menu = new KTMenu(menuTrigger.parentElement);
+    });
   };
 </script>
-
-<!-- Include necessary dependencies -->
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<!-- KTMenu JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
