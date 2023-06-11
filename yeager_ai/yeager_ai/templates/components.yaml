@@ -16,7 +16,7 @@ components:
   image_card: "partials/CRM/image_card.html"
 
 
-
+  notifier: "partials/notifier.html"
 
 
   api_overview: "partials/API/api_overview.html"
@@ -120,6 +120,3 @@ components:
 
   success: "partials/Support/success.html"
   failed: "partials/Support/failed.html"
-
-
-

@@ -5,11 +5,13 @@
 
 <!-- WebSocket script -->
 <script>
-  const agentEventSocket = new WebSocket("ws://localhost:7456/ws");
+  const agentEventSocket = new WebSocket(`ws://${window.location.host}/ws/world/`);
 
   agentEventSocket.onmessage = function (event) {
     // Process the received message
-    const data = JSON.parse(event.data);
+    const bat = JSON.parse(event.data);
+    const data = bat.eventData;
+    console.log(data);
     // Define an array of icon URLs
     const iconUrls = [
       "{% static 'assets/media/svg/avatars/026-boy-10.svg' %}",
