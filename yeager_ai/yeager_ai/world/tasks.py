@@ -21,9 +21,11 @@ async def fetch_data_from_api(websocket_url):
                 'data': data,
             }
             
+           
             try:
                 if data:
                     await channel_layer.group_send(channel_world, event)
+                  
                     # async_to_sync(channel_layer.group_send)(channel_world, event)
             except Exception as e:
                 print(f'Error during broadcast: {str(e)}')

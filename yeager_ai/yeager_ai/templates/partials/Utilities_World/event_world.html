@@ -131,7 +131,9 @@
               <div class="tab-content">
                   <div class="timeline p-5">
                     <!-- timeline components here -->
-                   {% include '../Events/event.html' %}
+                    <div  hx-ws="connect:ws://localhost:8000/ws/world/" > 
+                      <div id="event" hx-trigger="msg:world_event" ></div>
+              </div> 
 
                   </div>
                 </div>
@@ -195,3 +197,29 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Define an array of icon URLs
+      const iconUrls = [
+        "{% static 'assets/media/svg/figma/chat.svg' %}",
+        "{% static 'assets/media/svg/figma/add.svg' %}",
+        "{% static 'assets/media/svg/figma/board.svg' %}",
+        // more icon URLs
+      ];
+    
+      // Generate a random index to select an icon URL from the array
+      const randomIndex = Math.floor(Math.random() * iconUrls.length);
+      const randomIconUrl = iconUrls[randomIndex];
+    
+      // Select the timeline item
+      const timelineItem = document.querySelector(".#event");
+    
+      // Append the new timeline item to the timeline
+      const timeline = document.querySelector(".timeline");
+      timeline.appendChild(timelineItem);
+    
+      // Initialize the KMenu component for the new timeline item
+      const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
+      const menu = new KTMenu(menuTrigger.parentElement);
+      
+    </script>

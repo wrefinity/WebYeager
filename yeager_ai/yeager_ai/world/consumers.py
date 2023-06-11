@@ -29,24 +29,22 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
         logger.info('===Received message=====')
         
         
-    # async def world_event(self, event):
-    #     data = event['data']
-    #     logger.info('===Received message=====')
-    #     # html_message = f"<div hx-swap-oob='beforeend:#messages'>Welcome <p>{data['event_type']}</p></div>"
-    #     # print(html_message)
-    #     try:
-    #         html = get_template("partials/notifier.html").render(
-    #                 context={"data": data}
-    #             )
-    #         await self.send(text_data=html)
-    #     except Exception as e:
-    #         print("An error occurred while sending the data:", e)
-            
+        
     async def world_event(self, event):
         data = event['data']
         logger.info('===Received message=====')
+
         try:
-            json_data = json.dumps({"eventData": data})  # Include event data with a specific key
-            await self.send(text_data=json_data)  # Send JSON data through WebSocket
+            if 'nearby_entities' in data:
+                template_name = "partials/agent_event.html"
+                html = get_template(template_name).render(context={"data": data})
+                
+                await self.send(text_data=html)
+            else:
+                template_name = "partials/notifier.html"
+            
+                html = get_template(template_name).render(context={"data": data})
+                await self.send(text_data=html)
         except Exception as e:
             print("An error occurred while sending the data:", e)
+

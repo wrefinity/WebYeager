@@ -1,125 +1,128 @@
 {% load static %}
 
 
- 
-  {% comment %} <div  hx-swap-oob="beforeend:#event" >
-    <!-- Timeline components here -->
-    <!-- Template: Timeline item -->
-    <div class="timeline">
-    <div class="timeline-item">
-      <!-- Timeline line -->
-      <div class="timeline-line w-40px"></div>
+<div hx-swap-oob="beforeend:#event" class="timeline">
+  <!-- Timeline components here -->
+  <!-- Template: Timeline item -->
 
-      <!-- Timeline icon -->
-      <div class="timeline-icon symbol symbol-circle symbol-40px">
-        <div class="symbol-label bg-light">
-          <img src="{% static 'assets/media/svg/figma/chat.svg' %}" alt="" />
-        </div>
+  <div class="timeline-item" hx-swap="true">
+    <!-- Timeline line -->
+    <div class="timeline-line w-40px"></div>
+
+    <!-- Timeline icon -->
+    <div class="timeline-icon symbol symbol-circle symbol-40px">
+      <div class="symbol-label bg-light">
+        <img src="{% static 'assets/media/svg/figma/chat.svg' %}" alt="" />
       </div>
-      <!-- End: Timeline icon -->
+    </div>
+    <!-- End: Timeline icon -->
 
-      <!-- Timeline content -->
-      <div class="card timeline-content mb-10 mt-n1">
-        <!-- Menu -->
-        <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100%" data-kt-menu="true">
-          <!-- Menu item -->
-          <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
-            <!-- Menu link -->
-            <a href="#" class="menu-link py-3">
-              <span class="menu-icon">
-                <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2" style="margin-left: 70px">
-                  <!-- User -->
-                  <div class="symbol symbol-circle symbol-25px">
-                    <img src="{% static 'assets/media/avatars/300-2.jpg' %}" alt="img" />
-                  </div>
-                  <!-- End: User -->
-
-                  <!-- User -->
-                  <div class="symbol symbol-circle symbol-25px">
-                    <img src="{% static 'assets/media/avatars/300-14.jpg' %}" alt="img" />
-                  </div>
-                  <!-- End: User -->
+    <!-- Timeline content -->
+    <div class="card timeline-content mb-10 mt-n1">
+      <!-- Menu -->
+      <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100%" data-kt-menu="true">
+        <!-- Menu item -->
+        <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click" hx-trigger="click">
+          <!-- Menu link -->
+          <a href="#" class="menu-link py-3">
+            <span class="menu-icon">
+              <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2" style="margin-left: 70px">
+                <!-- User -->
+                <div class="symbol symbol-circle symbol-25px">
+                  <img src="{% static 'assets/media/avatars/300-2.jpg' %}" alt="img" />
                 </div>
-              </span>
+                <!-- End: User -->
 
-              <span class="menu-title name">{{data.event_type}}</span>
-              <span class="menu-title date">{{data.created_at}}</span>
+                <!-- User -->
+                <div class="symbol symbol-circle symbol-25px">
+                  <img src="{% static 'assets/media/avatars/300-14.jpg' %}" alt="img" />
+                </div>
+                <!-- End: User -->
+              </div>
+            </span>
 
-              <span class="menu-arrow"></span>
-            </a>
-            <!-- End: Menu link -->
+            <span class="menu-title name">{{data.event_type}}</span>
+            <span class="menu-title date">{{data.created_at}}</span>
 
-            <!-- Menu sub -->
-            <div class="menu-sub menu-sub-accordion pt-3">
-              <!-- Menu item -->
-              <div class="menu-item">
-                <div class="d-flex flex-column" style="width: 500px; gap: 10px">
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Description:</strong></span>
-                    <span class="text-gray-600 fw-semibold">{{data.message}}</span>
-                  </div>
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
-                    <span class="text-gray-600 date fw-semibold">{{data.created_at}}</span>
-                  </div>
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
-                    <span class="text-gray-600 fw-semibold">{{data.sender_id}}</span>
-                  </div>
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
-                    <span class="text-gray-600 fw-semibold">{{data.object_id}}</span>
-                  </div>
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
-                    <span class="text-gray-600 fw-semibold">{{data.target_id}}</span>
-                  </div>
-                  <div class="d-flex">
-                    <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
-                    <span class="text-gray-600 fw-semibold">{{data.recipient_agent_id}}</span>
-                  </div>
+            <span class="menu-arrow"></span>
+          </a>
+          <!-- End: Menu link -->
+
+          <!-- Menu sub -->
+          <div class="menu-sub menu-sub-accordion pt-3">
+            <!-- Menu item -->
+            <div class="menu-item">
+              <div class="d-flex flex-column" style="width: 500px; gap: 10px">
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Description:</strong></span>
+                  <span class="text-gray-600 fw-semibold">{{data.message}}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
+                  <span class="text-gray-600 date fw-semibold">{{data.created_at}}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
+                  <span class="text-gray-600 fw-semibold">{{data.sender_id}}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
+                  <span class="text-gray-600 fw-semibold">{{data.object_id}}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
+                  <span class="text-gray-600 fw-semibold">{{data.target_id}}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
+                  <span class="text-gray-600 fw-semibold">{{data.recipient_agent_id}}</span>
                 </div>
               </div>
-              <!-- End: Menu item -->
-
-              <!-- ... -->
             </div>
-            <!-- End: Menu sub -->
+            <!-- End: Menu item -->
+
+            <!-- ... -->
           </div>
-          <!-- End: Menu item -->
+          <!-- End: Menu sub -->
         </div>
-        <!-- End: Menu -->
+        <!-- End: Menu item -->
       </div>
-      <!-- End: Timeline content -->
+      <!-- End: Menu -->
     </div>
-    <!-- End: Template: Timeline item -->
+    <!-- End: Timeline content -->
+  </div>
 
-    <!-- Template: Add more timeline items here -->
-
-  </div> {% endcomment %}
+  <!-- Template: Add more timeline items here -->
+</div>
 
 <script>
- // Define an array of icon URLs
-const iconUrls = [
-"{% static 'assets/media/svg/figma/chat.svg' %}",
-"{% static 'assets/media/svg/figma/add.svg' %}",
-"{% static 'assets/media/svg/figma/board.svg' %}",
-// more icon URLs
-];
+  // Define an array of icon URLs
+  const iconUrls = [
+    "{% static 'assets/media/svg/figma/chat.svg' %}",
+    "{% static 'assets/media/svg/figma/add.svg' %}",
+    "{% static 'assets/media/svg/figma/board.svg' %}",
+    // more icon URLs
+  ];
 
-// Generate a random index to select an icon URL from the array
-const randomIndex = Math.floor(Math.random() * iconUrls.length);
-const randomIconUrl = iconUrls[randomIndex];
+  // Generate a random index to select an icon URL from the array
+  const randomIndex = Math.floor(Math.random() * iconUrls.length);
+  const randomIconUrl = iconUrls[randomIndex];
 
-// Initialize the KMenu component for the new timeline item
-const menuTrigger = document.querySelector('[data-kt-menu-trigger="click"]');
-const menu = new KTMenu(menuTrigger.parentElement);
+  // Select the timeline item
+  const timelineItem = document.querySelector(".timeline-item");
 
-// Reinitialize the KMenu component for all existing timeline items
-const existingMenuItems = document.querySelectorAll(".menu-item");
-existingMenuItems.forEach((item) => {
-const menuTrigger = item.querySelector('[data-kt-menu-trigger="click"]');
-const menu = new KTMenu(menuTrigger.parentElement);
-});
+  // Append the new timeline item to the timeline
+  const timeline = document.querySelector(".timeline");
+  timeline.appendChild(timelineItem);
 
+  // Initialize the KMenu component for the new timeline item
+  const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
+  const menu = new KTMenu(menuTrigger.parentElement);
+  
 </script>
+
+<!-- Include necessary dependencies -->
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- KTMenu JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-menu/dist/js/bootstrap-menu.min.js"></script>

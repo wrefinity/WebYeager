@@ -21,7 +21,10 @@
     </div>
     <div>
       <div class="hover-scroll-y h-650px px-5">
-        {% include '../Events/agent_event.html' %}</div>
+        <div  hx-ws="connect:ws://localhost:8000/ws/world/" > 
+          <div id="agents" ></div>
+  </div> 
+</div>
 
       <!--end::Card header-->
       <div class="card-footer pt-4" id="kt_chat_messenger_footer">
