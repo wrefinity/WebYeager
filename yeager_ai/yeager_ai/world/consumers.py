@@ -9,30 +9,37 @@ FastAPI connect
 '''
 class FastAPIConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        
+        user = self.scope['user']
         self.channel_world = 'world'
-        await self.channel_layer.group_add(self.channel_world, self.channel_name)
-        await self.accept()
-        logger.info('Connected to world channel')
-        await self.send(text_data=json.dumps({
-            'message': 'Connected'
-        }))
+        if user.is_authenticated:
+            # User is authenticated, proceed with connection
+            await self.channel_layer.group_add(self.channel_world, self.channel_name)
+            await self.accept()
+            logger.info('Connected to world channel')
+            await self.send(text_data=json.dumps({
+                'message': 'Connected'
+                }))
+        else:
+            # User is not authenticated, close the connection
+            await self.close()
         
 
-    async def disconnect(self):
-        await self.channel_layer.group_discard(
-            self.channel_world, self.channel_name
-        )
+    async def disconnect(self, close_code):
+        if self.channel_world:
+            await self.channel_layer.group_discard(
+                self.channel_world, self.channel_name
+            )
         logger.info('Disconnected from world channel')
         
 
     async def receive(self, text_data):
-        logger.info('===Received message=====')
+        pass
         
         
         
     async def world_event(self, event):
         data = event['data']
-        logger.info('===Received message=====')
 
         try:
             if 'nearby_entities' in data:

@@ -44,8 +44,8 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 DATABASES = {
     "default": {'ENGINE': "django.db.backends.postgresql",
                 'NAME': 'project',
-                'USER': 'postgres',
-                'PASSWORD': 'TIMMY',
+                'USER': 'yeager',
+                'PASSWORD': 'password',
                 'HOST': '127.0.0.1',
                 'PORT': '5432',
                 }
@@ -219,7 +219,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "referal.middleware.ReferralMiddleware",
+    "yeager_ai.referal.middleware.ReferralMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
 
@@ -234,7 +234,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # STATIC
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+# https://docs.djangoproject.com/en/dev/ref/    # "yeager_ai.world.middleware.AuthMiddleware",settings/#static-root
 STATIC_ROOT = str(APPS_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"

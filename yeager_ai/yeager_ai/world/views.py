@@ -168,12 +168,6 @@ class WorldInstanceFormView(LoginRequiredMixin, FormView):
 '''
 World Instance View Details
 '''
-def get_data(request):
-    result = fetch_data_from_api.delay("ws://external-api.com/stream")
-    data = result.get()  # Get the task result
-
-    return HttpResponse(data)
-
 
 
 class WorldInstanceDetail(LoginRequiredMixin, View):
