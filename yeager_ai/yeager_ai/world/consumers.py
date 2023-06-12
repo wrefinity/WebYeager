@@ -9,13 +9,20 @@ FastAPI connect
 '''
 class FastAPIConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.channel_world = 'world'
-        await self.channel_layer.group_add(self.channel_world, self.channel_name)
-        await self.accept()
-        logger.info('Connected to world channel')
-        await self.send(text_data=json.dumps({
-            'message': 'Connected'
-        }))
+        
+        if self.scope["user"].is_authenticated:
+            # User is authenticated, proceed with connection
+            self.channel_world = 'world'
+            await self.channel_layer.group_add(self.channel_world, self.channel_name)
+            await self.accept()
+            logger.info('Connected to world channel')
+            await self.send(text_data=json.dumps({
+                'message': 'Connected'
+            }))
+        else:
+            # User is not authenticated, close the connection
+            await self.close()
+       
         
 
     async def disconnect(self):
