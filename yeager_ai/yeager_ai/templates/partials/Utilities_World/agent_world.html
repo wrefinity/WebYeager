@@ -22,7 +22,8 @@
     <div>
       <div class="hover-scroll-y h-650px px-5">
         <div  hx-ws="connect:ws://localhost:8000/ws/world/" > 
-          <div id="agents" ></div>
+          {% comment %} appending websocket context in here {% endcomment %}
+          <div id="agents" hx-trigger="msg:world_event"></div>
   </div> 
 </div>
 

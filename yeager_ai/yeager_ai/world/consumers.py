@@ -36,12 +36,12 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
 
         try:
             if 'nearby_entities' in data:
-                template_name = "partials/agent_event.html"
+                template_name = "partials/Events/agent_event.html"
                 html = get_template(template_name).render(context={"data": data})
                 
                 await self.send(text_data=html)
             else:
-                template_name = "partials/notifier.html"
+                template_name = "partials/Events/event.html"
             
                 html = get_template(template_name).render(context={"data": data})
                 await self.send(text_data=html)

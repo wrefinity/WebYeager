@@ -132,6 +132,7 @@
                   <div class="timeline p-5">
                     <!-- timeline components here -->
                     <div  hx-ws="connect:ws://localhost:8000/ws/world/" > 
+                      {% comment %} appending websocket context in here {% endcomment %}
                       <div id="event" hx-trigger="msg:world_event" ></div>
               </div> 
 

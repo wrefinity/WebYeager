@@ -1,40 +1,10 @@
 {% load static %}
 
-  <div class="card-body p-9 pt-4"></div>
+{% comment %} Websocket data recieved; Htmx swapping context with the id(agents) in partials/Utilities_World/agent_world  line 25 {% endcomment %}
 
-
-<!-- WebSocket script -->
-<script>
-  const agentEventSocket = new WebSocket(`ws://${window.location.host}/ws/world/`);
-
-  agentEventSocket.onmessage = function (event) {
-    // Process the received message
-    const bat = JSON.parse(event.data);
-    const data = bat.eventData;
-    console.log(data);
-    // Define an array of icon URLs
-    const iconUrls = [
-      "{% static 'assets/media/svg/avatars/026-boy-10.svg' %}",
-      "{% static 'assets/media/svg/avatars/027-girl-15.svg' %}",
-      "{% static 'assets/media/svg/avatars/011-boy-5.svg' %}",
-      "{% static 'assets/media/svg/avatars/030-girl-17.svg' %}",
-      "{% static 'assets/media/svg/avatars/040-boy-17.svg' %}",
-      "{% static 'assets/media/svg/avatars/023-girl-13.svg' %}",
-
-      // more icon URLs
-    ];
-
-    // Generate a random index to select an icon URL from the array
-    const randomIndex = Math.floor(Math.random() * iconUrls.length);
-    const randomIconUrl = iconUrls[randomIndex];
-
-    // Create a new timeline item
-    data.nearby_entities.forEach(function (entity) {
-      const agentItem = document.createElement("div");
-
-      // Set the content of the timeline item
-      agentItem.innerHTML = `
-      <div
+<div hx-swap-oob="beforeend:#agents" class="card-body p-9 pt-4">
+  
+  <div
       class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold overflow-auto"
       data-kt-menu="true"
     >
@@ -53,7 +23,7 @@
               <!--begin::User-->
               <div class="symbol symbol-40px me-5">
                 <img
-                  src="${randomIconUrl}"
+                  src="{% static 'assets/media/svg/avatars/026-boy-10.svg' %}"
                   class="h-50 align-self-center"
                   alt=""
                 />
@@ -61,8 +31,8 @@
             </div>
           </span>
 
-          <span class="menu-title">${entity.name}</span>
-          <span class="menu-title">${data.created_at}</span>
+          <span class="menu-title">{{data.nearby_entities.0.name}}</span>
+          <span class="menu-title">{{data.created_at}}</span>
 
           <span class="menu-arrow"></span>
         </a>
@@ -82,7 +52,7 @@
                   <label>
                     <div class="d-flex flex-column">
                       <li class="d-flex align-items-center py-2">
-                        <span class="bullet bullet-vertical me-5"></span>Held By - ${entity.held_by}
+                        <span class="bullet bullet-vertical me-5"></span>Held By - {{data.nearby_entities.0.held_by}}
                       </li>
                     </div>
                   </label>
@@ -102,7 +72,7 @@
                     <div class="d-flex flex-column">
                       <li class="d-flex align-items-center py-2">
                         <span class="bullet bullet-dot me-5"></span>
-                        ${entity.location}
+                        {{data.nearby_entities.0.location}}
                       </li>
                     </div>
                   </label>
@@ -145,7 +115,7 @@
                               <!--begin::User-->
                               <div class="symbol symbol-circle symbol-25px">
                                 <img
-                                  src="${randomIconUrl}"
+                                  src="{% static 'assets/media/svg/avatars/023-girl-13.svg' %}"
                                   alt="img"
                                 />
                               </div>
@@ -154,7 +124,7 @@
                               <!--begin::User-->
                               <div class="symbol symbol-circle symbol-25px">
                                 <img
-                                  src="${randomIconUrl}"
+                                  src="{% static 'assets/media/svg/avatars/040-boy-17.svg' %}"
                                   alt="img"
                                 />
                               </div>
@@ -162,9 +132,9 @@
                             </div>
                           </span>
 
-                          <span class="menu-title">${data.event_type}</span>
+                          <span class="menu-title">{{data.event_type}}</span>
                           <span class="menu-title"
-                            >${data.created_at}</span
+                            >{{data.created_at}}</span
                           >
 
                           <span class="menu-arrow"></span>
@@ -178,27 +148,27 @@
                               <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
-                                  <span class="text-gray-600 fw-semibold">${data.message}</span>
+                                  <span class="text-gray-600 fw-semibold">{{data.message}}</span>
                                 </div>
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
-                                  <span class="text-gray-600 date fw-semibold">${data.created_at}</span>
+                                  <span class="text-gray-600 date fw-semibold">{{data.created_at}}</span>
                                 </div>
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
-                                  <span class="text-gray-600 fw-semibold">${data.sender_id}</span>
+                                  <span class="text-gray-600 fw-semibold">{{data.sender_id}}</span>
                                 </div>
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
-                                  <span class="text-gray-600 fw-semibold">${data.object_id}</span>
+                                  <span class="text-gray-600 fw-semibold">{{data.object_id}}</span>
                                 </div>
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
-                                  <span class="text-gray-600 fw-semibold">${data.target_id}</span>
+                                  <span class="text-gray-600 fw-semibold">{{data.target_id}}</span>
                                 </div>
                                 <div class="d-flex">
                                   <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
-                                  <span class="text-gray-600 fw-semibold">${data.recipient_agent_id}</span>
+                                  <span class="text-gray-600 fw-semibold">{{data.recipient_agent_id}}</span>
                                 </div>
                               </div>
                             </div>
@@ -231,33 +201,33 @@
       <!--end::Menu-->
       <!--end::Timeline details-->
     </div>
-      `;
+</div>
 
-      // Append the new item to the card-body
-      const cardBody = document.querySelector(".card-body");
-      cardBody.appendChild(agentItem);
+<script>
+  // Define an array of icon URLs
+  const iconUrls = [
+    "{% static 'assets/media/svg/figma/chat.svg' %}",
+    "{% static 'assets/media/svg/figma/add.svg' %}",
+    "{% static 'assets/media/svg/figma/board.svg' %}",
+    // more icon URLs
+  ];
 
-      const menuTrigger = agentItem.querySelector(
-        '[data-kt-menu-trigger="click"]'
-      );
-      const menu = new KTMenu(menuTrigger.parentElement);
+  // Generate a random index to select an icon URL from the array
+  const randomIndex = Math.floor(Math.random() * iconUrls.length);
+  const randomIconUrl = iconUrls[randomIndex];
 
-      // Initialize nested menus within the new item
-      const nestedMenuItems = agentItem.querySelectorAll(
-        ".menu-sub .menu-item"
-      );
-      nestedMenuItems.forEach((nestedItem) => {
-        const nestedMenuTrigger = nestedItem.querySelector(
-          '[data-kt-menu-trigger="click"]'
-        );
-        const nestedMenu = new KTMenu(nestedMenuTrigger.parentElement);
-      });
-    });
-  };
-  // Reinitialize the KMenu component for all existing timeline items
-  const existingMenuItems = document.querySelectorAll(".menu-item");
-  existingMenuItems.forEach((item) => {
-    const menuTrigger = item.querySelector('[data-kt-menu-trigger="click"]');
-    const menu = new KTMenu(menuTrigger.parentElement);
-  });
+  // Select the timeline item
+  const timelineItem = document.querySelector(".timeline-item");
+
+  // Append the new timeline item to the timeline
+  const timeline = document.querySelector(".timeline");
+  timeline.appendChild(timelineItem);
+
+  // Initialize the KMenu component for the new timeline item
+  const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
+  const menu = new KTMenu(menuTrigger.parentElement);
 </script>
+
+
+<!-- KTMenu JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-menu/dist/js/bootstrap-menu.min.js"></script>
