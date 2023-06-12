@@ -1,5 +1,7 @@
 {% load static %}
 
+{% comment %} Appending concurrent data coming from the websocket into the div {% endcomment %}
+
   <div class="card-body p-9 pt-4"></div>
 
 
@@ -9,8 +11,8 @@
 
   agentEventSocket.onmessage = function (event) {
     // Process the received message
-    const bat = JSON.parse(event.data);
-    const data = bat.eventData;
+    const dict = JSON.parse(event.data);
+    const data = dict.eventData;
     console.log(data);
     // Define an array of icon URLs
     const iconUrls = [

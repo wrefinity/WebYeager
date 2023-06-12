@@ -1,5 +1,8 @@
 {% load static %}
 
+
+{% comment %} Appending concurrent data coming from the websocket into the div {% endcomment %}
+
 <div class="timeline p-5">
   <!-- timeline components here -->
 </div>
@@ -11,8 +14,8 @@
 
   eventSocket.onmessage = function (event) {
     // Process the received message
-    const bat = JSON.parse(event.data);
-    const data = bat.eventData;
+    const dict = JSON.parse(event.data);
+    const data = dict.eventData;
     
 
     // Define an array of icon URLs
