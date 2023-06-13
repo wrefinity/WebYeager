@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 FastAPI connect
 '''
 class FastAPIConsumer(AsyncWebsocketConsumer):
+    
+    grouped_events = {}
     async def connect(self):
         
         if self.scope["user"].is_authenticated:
@@ -52,7 +54,33 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
     async def world_event(self, event):
         data = event['data']
         try:
-            json_data = json.dumps({"eventData": data})  # Include event data with a specific key
-            await self.send(text_data=json_data)  # Send JSON data through WebSocket
+            
+
+            if "sender_id" in data:
+                data_key = data['sender_id']
+                # value = self.grouped_events.get(data_key, None)
+                if data_key in self.grouped_events: # meaning sender id have already been added.
+                    self.grouped_events[str(data_key).lower()].append(data)
+                    print(self.grouped_events, "++already exist*****")
+                    json_data = json.dumps({"groupedEvents": self.grouped_events})
+                    await self.send(text_data=json_data)  # Send JSON data through WebSocket
+                    
+                else: # scenario where the sender_id is new instance
+                    self.grouped_events[str(data_key).lower()] = [data]
+                    print("=========checker=======", self.grouped_events)
+                    json_data = json.dumps({"groupedEvents": self.grouped_events})
+                    await self.send(text_data=json_data)  # Send JSON data through WebSocket
+            else:
+                json_data = json.dumps({"eventData": data}) 
+                await self.send(text_data=json_data)  # Send JSON data through WebSocket
+            
+
         except Exception as e:
             print("An error occurred while sending the data:", e)
+            
+            
+# 1. check for sender id availability 
+# created a dictionary of list
+# if the current sender id is the first instance create an array for the sender id 
+# else append it to its predecessors
+# Note dictionary key should be sender id so as to enable subsequent check if instance availability 
