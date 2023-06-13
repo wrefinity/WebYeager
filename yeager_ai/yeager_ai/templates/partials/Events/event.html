@@ -2,7 +2,7 @@
 
 {% comment %} Websocket data recieved; Htmx swapping context with the id(event) in partials/Utilities_World/event_world  line 135 {% endcomment %}
 
-<div hx-swap-oob="beforeend:#event" class="timeline">
+<div hx-swap-oob="beforeend:#event" class="timeline" >
   <!-- Timeline components here -->
   <!-- Template: Timeline item -->
 
@@ -23,7 +23,7 @@
       <!-- Menu -->
       <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100%" data-kt-menu="true">
         <!-- Menu item -->
-        <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click" hx-trigger="click">
+        <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click" hx-trigger="my-custom-event">
           <!-- Menu link -->
           <a href="#" class="menu-link py-3">
             <span class="menu-icon">
@@ -119,6 +119,16 @@
   // Initialize the KMenu component for the new timeline item
   const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
   const menu = new KTMenu(menuTrigger.parentElement);
+
+  document.addEventListener('my-custom-event', function(event) {
+    // Add additional conditions for other dropdowns
+  });
+
+  // Trigger the event when the dropdown is clicked
+  document.getElementById('dropdown1').addEventListener('click', function() {
+    var event = new Event('my-custom-event');
+    this.dispatchEvent(event);
+  });
   
 </script>
 

@@ -133,7 +133,7 @@
                     <!-- timeline components here -->
                     <div  hx-ws="connect:ws://127.0.0.1:8000/ws/world/" > 
                       {% comment %} appending websocket context in here {% endcomment %}
-                      <div id="event" hx-trigger="msg:world_event" ></div>
+                      <div id="event" hx-trigger="world_event" data-kt-menu-trigger="click"></div>
               </div> 
 
                   </div>
@@ -213,14 +213,27 @@
       const randomIconUrl = iconUrls[randomIndex];
     
       // Select the timeline item
-      const timelineItem = document.querySelector(".#event");
+      const timelineItem = document.querySelector("#event");
     
       // Append the new timeline item to the timeline
-      const timeline = document.querySelector(".timeline");
-      timeline.appendChild(timelineItem);
+      {% comment %} const timeline = document.querySelector(".timeline");
+      timeline.appendChild(timelineItem); {% endcomment %}
     
       // Initialize the KMenu component for the new timeline item
       const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
       const menu = new KTMenu(menuTrigger.parentElement);
       
+  
+      document.addEventListener('world_event', function(event) {
+        if (event.target.id === 'event') {
+          // Function logic for dropdown1
+          console.log('Dropdown 1 clicked');
+        }
+        // Add additional conditions for other dropdowns
+      });
+    
+      // Trigger the event when the dropdown is clicked
+      document.getElementById('event').addEventListener('click', function() {
+        window.alert("event called")
+      });
     </script>
