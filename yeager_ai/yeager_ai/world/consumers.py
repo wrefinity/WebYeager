@@ -59,13 +59,13 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
             if "sender_id" in data:
                 data_key = data['sender_id']
                 # value = self.grouped_events.get(data_key, None)
-                if data_key in self.grouped_events: # meaning sender id have already been added.
+                if data_key in self.grouped_events and not (isinstance(data['sender_id'], dict)): # meaning sender id have already been added.
                     self.grouped_events[str(data_key).lower()].append(data)
                     print(self.grouped_events, "++already exist*****")
                     json_data = json.dumps({"groupedEvents": self.grouped_events})
                     await self.send(text_data=json_data)  # Send JSON data through WebSocket
                     
-                else: # scenario where the sender_id is new instance
+                elif not (isinstance(data['sender_id'], dict)): # scenario where the sender_id is new instance
                     self.grouped_events[str(data_key).lower()] = [data]
                     print("=========checker=======", self.grouped_events)
                     json_data = json.dumps({"groupedEvents": self.grouped_events})
