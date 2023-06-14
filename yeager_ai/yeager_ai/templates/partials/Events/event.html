@@ -3,17 +3,17 @@
 <div class="timeline p-5">
   <!-- timeline components here -->
 </div>
-
-
 <!-- WebSocket script -->
 <script>
   const eventSocket = new WebSocket(`ws://${window.location.host}/ws/world/`);
-
+  
   eventSocket.onmessage = function (event) {
     // Process the received message
     const bat = JSON.parse(event.data);
     const data = bat.eventData;
     
+    // for (const key in data) {
+      // const items = data[key];
 
     // Define an array of icon URLs
     const iconUrls = [
