@@ -4,13 +4,13 @@
 
 <div hx-swap-oob="beforeend:#agents" class="card-body p-9 pt-4">
   <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold overflow-auto" data-kt-menu="true">
-    {% for key, events in grouped_events.items %}
+    {% for key, events in grouped_events %}
     <!--begin::Menu item-->
-    <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
+    <div class="menu-item here menu-accordion" data-kt-menu-trigger="click">
       <!--begin::Menu link-->
       <a href="#" class="menu-link py-3">
         <span class="menu-icon">
-          <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2">
+          <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 pe-2">
             <!--begin::User-->
             <div class="symbol symbol-40px me-5">
               <img src="{% static 'assets/media/svg/avatars/026-boy-10.svg' %}" class="h-50 align-self-center" alt="" />
@@ -23,7 +23,7 @@
       <!--end::Menu link-->
 
       <!--begin::Menu sub-->
-      <div class="menu-sub menu-sub-accordion pt-3">
+      <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block;" >
         {% for event in events %}
         <!--begin::Menu item-->
         <div class="menu-item">
@@ -37,7 +37,7 @@
                 <label>
                   <div class="d-flex flex-column">
                     <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-vertical me-5"></span>Held By - {{ event.nearby_entities.0.held_by }}
+                      <span class="bullet bullet-vertical me-5"></span>Held By - {{ event.held_by }}
                     </li>
                   </div>
                 </label>
@@ -54,7 +54,7 @@
                   <!--begin::Info-->
                   <div class="d-flex flex-column">
                     <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-dot me-5"></span>{{ event.nearby_entities.0.location }}
+                      <span class="bullet bullet-dot me-5"></span>{{ event.location }}
                     </li>
                   </div>
                 </label>
@@ -102,7 +102,7 @@
                       <!--end::Menu link-->
 
                       <!--begin::Menu sub-->
-                      <div class="menu-sub menu-sub-accordion pt-3">
+                      <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block;">
                         <!-- Menu item -->
                         <div class="menu-item">
                           <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
