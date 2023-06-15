@@ -14,6 +14,10 @@
     {% block css %}
     <!-- Your stuff: Third-party CSS libraries go here -->
     
+    <!-- Gulpfile: Complied Css files are in here -->
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'sass/project.scss' %}" rel="stylesheet">
     <link href="{% static 'sass/style.scss' %}" rel="stylesheet">
