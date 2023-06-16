@@ -42,11 +42,11 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
                 if data_key in self.grouped_events:
                     self.grouped_events[str(data_key).lower()].append(data)
                     json_data = json.dumps({"groupedEvents": self.grouped_events})
-                    print("===================")
+                    # print("===================")
                     
-                    print(self.grouped_events)
+                    # print(self.grouped_events)
                     
-                    print("========more===========")
+                    # print("========more===========")
                     
                     await self.send(text_data=json_data)  # Send JSON data through WebSocket
                 else:
