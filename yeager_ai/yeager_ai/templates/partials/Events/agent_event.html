@@ -6,8 +6,8 @@
   <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
     {% for key, events in grouped_events.items %}
     <!--begin::Menu item-->
-    <div class="menu-item here menu-accordion" data-kt-menu-trigger="click" hx-swap="true">
-      <!--begin::Menu link-->
+    <div class="menu-item here menu-accordion" data-kt-menu-trigger="click">
+  <!--begin::Menu link-->
       <a href="#" class="menu-link py-3">
         <span class="menu-icon">
           <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 pe-2">
@@ -65,87 +65,8 @@
             </div>
             <!--end::Input group-->
           </div>
-
-          <div class="tab-content">
-            <div class="timeline">
-              <div class="timeline-item">
-                <!--begin::Timeline line-->
-                <div class="timeline-line w-40px"></div>
-                <!--end::Timeline line-->
-                <!--begin::Timeline content-->
-                <div class="timeline-content mb-10 mt-n1">
-                  <!--begin::Timeline details-->
-                  <!--begin::Menu-->
-                  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
-                    {% for event in events %}
-                    <!--begin::Menu item-->
-                    <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
-                      <!--begin::Menu link-->
-                      <a href="#" class="menu-link py-3">
-                        <span class="menu-icon">
-                          <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 pe-2">
-                            <!--begin::User-->
-                            <div class="symbol symbol-circle symbol-25px">
-                              <img src="{% static 'assets/media/svg/avatars/023-girl-13.svg' %}" alt="img" />
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="symbol symbol-circle symbol-25px">
-                              <img src="{% static 'assets/media/svg/avatars/040-boy-17.svg' %}" alt="img" />
-                            </div>
-                            <!--end::User-->
-                          </div>
-                        </span>
-                        <span class="menu-title">{{ event.event_type }}</span>
-                        <span class="menu-arrow"></span>
-                      </a>
-                      <!--end::Menu link-->
-
-                      <!--begin::Menu sub-->
-                      <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block;">
-                        <!-- Menu item -->
-                        <div class="menu-item">
-                          <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ event.message }}</span>
-                            </div>
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
-                              <span class="text-gray-600 date fw-semibold">{{ event.created_at }}</span>
-                            </div>
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ event.sender_id }}</span>
-                            </div>
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ event.object_id }}</span>
-                            </div>
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ event.target_id }}</span>
-                            </div>
-                            <div class="d-flex">
-                              <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ event.recipient_agent_id }}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Menu item -->
-                      </div>
-                      <!--end::Menu sub-->
-                    </div>
-                    <!--end::Menu item-->
-                    {% endfor %}
-                  </div>
-                  <!--end::Menu-->
-                  <!--end::Timeline details-->
-                </div>
-                <!--end::Timeline content-->
-              </div>
-            </div>
-          </div>
+          <!--Appending body into header -->
+          <div id="body" ></div>
         </div>
         <!--end::Menu item-->
         
