@@ -3,10 +3,10 @@
 {% comment %} Websocket data recieved; Htmx swapping context with the id(agents) in partials/Utilities_World/agent_world  line 25 {% endcomment %}
 
 <div hx-swap-oob="beforeend:#agents" class="card-body p-9 pt-4">
-  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold overflow-auto" data-kt-menu="true">
-    {% for key, events in grouped_events %}
+  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
+    {% for key, events in grouped_events.items %}
     <!--begin::Menu item-->
-    <div class="menu-item here menu-accordion" data-kt-menu-trigger="click">
+    <div class="menu-item here menu-accordion" data-kt-menu-trigger="click" hx-swap="true">
       <!--begin::Menu link-->
       <a href="#" class="menu-link py-3">
         <span class="menu-icon">
@@ -24,7 +24,7 @@
 
       <!--begin::Menu sub-->
       <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block;" >
-        {% for event in events %}
+        
         <!--begin::Menu item-->
         <div class="menu-item">
           <div class="fv-row fv-plugins-icon-container">
@@ -37,7 +37,7 @@
                 <label>
                   <div class="d-flex flex-column">
                     <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-vertical me-5"></span>Held By - {{ event.held_by }}
+                      <span class="bullet bullet-vertical me-5"></span>Held By - 
                     </li>
                   </div>
                 </label>
@@ -54,7 +54,7 @@
                   <!--begin::Info-->
                   <div class="d-flex flex-column">
                     <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-dot me-5"></span>{{ event.location }}
+                      <span class="bullet bullet-dot me-5"></span>
                     </li>
                   </div>
                 </label>
@@ -76,8 +76,8 @@
                 <div class="timeline-content mb-10 mt-n1">
                   <!--begin::Timeline details-->
                   <!--begin::Menu-->
-                  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold" data-kt-menu="true">
-                    {% for sub_event in event %}
+                  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
+                    {% for event in events %}
                     <!--begin::Menu item-->
                     <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
                       <!--begin::Menu link-->
@@ -96,7 +96,7 @@
                             <!--end::User-->
                           </div>
                         </span>
-                        <span class="menu-title">{{ sub_event.event_type }}</span>
+                        <span class="menu-title">{{ event.event_type }}</span>
                         <span class="menu-arrow"></span>
                       </a>
                       <!--end::Menu link-->
@@ -108,27 +108,27 @@
                           <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ sub_event.message }}</span>
+                              <span class="text-gray-600 fw-semibold">{{ event.message }}</span>
                             </div>
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
-                              <span class="text-gray-600 date fw-semibold">{{ sub_event.created_at }}</span>
+                              <span class="text-gray-600 date fw-semibold">{{ event.created_at }}</span>
                             </div>
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ sub_event.sender_id }}</span>
+                              <span class="text-gray-600 fw-semibold">{{ event.sender_id }}</span>
                             </div>
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ sub_event.object_id }}</span>
+                              <span class="text-gray-600 fw-semibold">{{ event.object_id }}</span>
                             </div>
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ sub_event.target_id }}</span>
+                              <span class="text-gray-600 fw-semibold">{{ event.target_id }}</span>
                             </div>
                             <div class="d-flex">
                               <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
-                              <span class="text-gray-600 fw-semibold">{{ sub_event.recipient_agent_id }}</span>
+                              <span class="text-gray-600 fw-semibold">{{ event.recipient_agent_id }}</span>
                             </div>
                           </div>
                         </div>
@@ -148,7 +148,7 @@
           </div>
         </div>
         <!--end::Menu item-->
-        {% endfor %}
+        
       </div>
       <!--end::Menu sub-->
 
@@ -160,32 +160,3 @@
     <!--end::Timeline details-->
   </div>
 </div>
-
-<script>
-  // Define an array of icon URLs
-  const iconUrls = [
-    "{% static 'assets/media/svg/figma/chat.svg' %}",
-    "{% static 'assets/media/svg/figma/add.svg' %}",
-    "{% static 'assets/media/svg/figma/board.svg' %}",
-    // more icon URLs
-  ];
-
-  // Generate a random index to select an icon URL from the array
-  const randomIndex = Math.floor(Math.random() * iconUrls.length);
-  const randomIconUrl = iconUrls[randomIndex];
-
-  // Select the timeline item
-  const timelineItem = document.querySelector(".timeline-item");
-
-  // Append the new timeline item to the timeline
-  const timeline = document.querySelector(".timeline");
-  timeline.appendChild(timelineItem);
-
-  // Initialize the KMenu component for the new timeline item
-  const menuTrigger = timelineItem.querySelector('[data-kt-menu-trigger="click"]');
-  const menu = new KTMenu(menuTrigger.parentElement);
-</script>
-
-
-<!-- KTMenu JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-menu/dist/js/bootstrap-menu.min.js"></script>

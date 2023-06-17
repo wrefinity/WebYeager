@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="tab-pane fade" id="kt_user_view_agent" role="tabpanel">
-  <div class="card w-100">
+  <div class="card p-5 w-100">
     <!--begin::Card header-->
     <div class="card-header">
       <!--begin::Card title-->
@@ -21,7 +21,7 @@
     </div>
     <div>
       <div class="hover-scroll-y h-650px px-5">
-        <div  hx-ws="connect:ws://localhost:8000/ws/world/" > 
+        <div  hx-ws="connect:ws://127.0.0.1:8000/ws/world/" > 
           {% comment %} appending websocket context in here {% endcomment %}
           <div id="agents" hx-trigger="msg:world_event"></div>
   </div> 
