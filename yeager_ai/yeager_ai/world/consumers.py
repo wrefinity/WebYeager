@@ -64,4 +64,3 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
 
         except Exception as e:
             print("An error occurred while sending the data:", e)
-
