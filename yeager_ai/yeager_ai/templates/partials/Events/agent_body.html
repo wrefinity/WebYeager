@@ -1,7 +1,6 @@
 {% load static %}
 <div class="tab-content">
-  {% for key, events in grouped_events.items %}
-
+  {% if group_data %}
     <div class="timeline">
       <div class="timeline-item">
         <!--begin::Timeline line-->
@@ -13,7 +12,7 @@
           <!--begin::Menu-->
           <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
             <!--begin::Menu item-->
-    {% for event in events %}
+    
             
             <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
               <!--begin::Menu link-->
@@ -32,7 +31,7 @@
                     <!--end::User-->
                   </div>
                 </span>
-                <span class="menu-title">{{ event.event_type }}</span>
+                <span class="menu-title">{{ group_data.event_type }}</span>
                 <span class="menu-arrow"></span>
               </a>
               <!--end::Menu link-->
@@ -44,27 +43,27 @@
                   <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
-                      <span class="text-gray-600 fw-semibold">{{ event.message }}</span>
+                      <span class="text-gray-600 fw-semibold">{{ group_data.message }}</span>
                     </div>
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
-                      <span class="text-gray-600 date fw-semibold">{{ event.created_at }}</span>
+                      <span class="text-gray-600 date fw-semibold">{{ group_data.created_at }}</span>
                     </div>
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
-                      <span class="text-gray-600 fw-semibold">{{ event.sender_id }}</span>
+                      <span class="text-gray-600 fw-semibold">{{ group_data.sender_id }}</span>
                     </div>
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
-                      <span class="text-gray-600 fw-semibold">{{ event.object_id }}</span>
+                      <span class="text-gray-600 fw-semibold">{{ group_data.object_id }}</span>
                     </div>
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
-                      <span class="text-gray-600 fw-semibold">{{ event.target_id }}</span>
+                      <span class="text-gray-600 fw-semibold">{{ group_data.target_id }}</span>
                     </div>
                     <div class="d-flex">
                       <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
-                      <span class="text-gray-600 fw-semibold">{{ event.recipient_agent_id }}</span>
+                      <span class="text-gray-600 fw-semibold">{{ group_data.recipient_agent_id }}</span>
                     </div>
                   </div>
                 </div>
@@ -72,16 +71,16 @@
               </div>
               <!--end::Menu sub-->
             </div>
-            {% endfor %}
           </div>
-            
-            <!--end::Menu item-->
-          </div>
-          <!--end::Menu-->
-          <!--end::Timeline details-->
+          
+          <!--end::Menu item-->
         </div>
-        <!--end::Timeline content-->
+        <!--end::Menu-->
+        <!--end::Timeline details-->
       </div>
-      {% endfor %}
+      <!--end::Timeline content-->
+    </div>
+    {% endif %}
+    
     </div>
   </div>

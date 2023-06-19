@@ -1,19 +1,28 @@
-{% load static %}
+{% load static %} 
 
-{% comment %} Websocket data recieved; Htmx swapping context with the id(agents) in partials/Utilities_World/agent_world  line 25 {% endcomment %}
+{% comment %} Websocket data recieved; Htmx swapping context
+with the id(agents) in partials/Utilities_World/agent_world line 25 {% endcomment %}
 
 <div hx-swap-oob="beforeend:#agents" class="card-body p-9 pt-4">
-  <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100" data-kt-menu="true">
-    {% for key, events in grouped_events.items %}
+  <div
+    class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold w-100"
+    data-kt-menu="true"
+  >
+    {% for key, value in grouped_items.items() %}
+
     <!--begin::Menu item-->
     <div class="menu-item here menu-accordion" data-kt-menu-trigger="click">
-  <!--begin::Menu link-->
+      <!--begin::Menu link-->
       <a href="#" class="menu-link py-3">
         <span class="menu-icon">
           <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 pe-2">
             <!--begin::User-->
             <div class="symbol symbol-40px me-5">
-              <img src="{% static 'assets/media/svg/avatars/026-boy-10.svg' %}" class="h-50 align-self-center" alt="" />
+              <img
+                src="{% static 'assets/media/svg/avatars/026-boy-10.svg' %}"
+                class="h-50 align-self-center"
+                alt=""
+              />
             </div>
           </div>
         </span>
@@ -23,59 +32,20 @@
       <!--end::Menu link-->
 
       <!--begin::Menu sub-->
-      <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block;" >
-        
+      <div class="menu-sub menu-sub-accordion pt-3 show" style="display: block">
         <!--begin::Menu item-->
         <div class="menu-item">
-          <div class="fv-row fv-plugins-icon-container">
-            <!--begin::Row-->
-            <div class="row">
-              <!--begin::Col-->
-              <div class="col-lg-6">
-                <!--begin::Option-->
-                <div class="text-muted fs-6 pb-4">Task list</div>
-                <label>
-                  <div class="d-flex flex-column">
-                    <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-vertical me-5"></span>Held By - 
-                    </li>
-                  </div>
-                </label>
-                <!--end::Option-->
-                <div class="fv-plugins-message-container invalid-feedback"></div>
-              </div>
-              <!--end::Col-->
-
-              <!--begin::Col-->
-              <div class="col-lg-6">
-                <!--begin::Option-->
-                <div class="text-muted fs-6 pb-4">Location</div>
-                <label>
-                  <!--begin::Info-->
-                  <div class="d-flex flex-column">
-                    <li class="d-flex align-items-center py-2">
-                      <span class="bullet bullet-dot me-5"></span>
-                    </li>
-                  </div>
-                </label>
-                <!--end::Option-->
-                <div class="fv-plugins-message-container invalid-feedback"></div>
-              </div>
-              <!--end::Col-->
-            </div>
-            <!--end::Input group-->
-          </div>
           <!--Appending body into header -->
-          <div id="body" ></div>
+          <div id="body"></div>
         </div>
         <!--end::Menu item-->
-        
       </div>
       <!--end::Menu sub-->
 
       <!-- end::Card-->
       <!--end::Menu item-->
     </div>
+
     {% endfor %}
     <!--end::Menu-->
     <!--end::Timeline details-->

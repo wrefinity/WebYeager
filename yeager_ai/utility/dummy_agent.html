@@ -1,0 +1,233 @@
+<script>
+    const agentEventSocket = new WebSocket(
+      `ws://${window.location.host}/ws/world/`
+    );
+  
+    agentEventSocket.onmessage = function (event) {
+      const response = JSON.parse(event.data);
+      const data = response.groupedEvents;
+  
+      console.log(data);
+  
+      //data is an arrray with key and items inside
+      //so i want to use the key as menu-title,
+      //then the items as timeline items
+  
+      // Define an array of icon URLs
+      const iconUrls = [
+        "{% static 'assets/media/svg/avatars/026-boy-10.svg' %}",
+        "{% static 'assets/media/svg/avatars/027-girl-15.svg' %}",
+        "{% static 'assets/media/svg/avatars/011-boy-5.svg' %}",
+        "{% static 'assets/media/svg/avatars/030-girl-17.svg' %}",
+        "{% static 'assets/media/svg/avatars/040-boy-17.svg' %}",
+        "{% static 'assets/media/svg/avatars/023-girl-13.svg' %}",
+  
+        // more icon URLs
+      ];
+  
+      // Generate a random index to select an icon URL from the array
+      const getRandomIconUrl = () => {
+        const randomIndex = Math.floor(Math.random() * iconUrls.length);
+        return iconUrls[randomIndex];
+      };
+  
+      // Create a new timeline item
+      for (const key in data) {
+        const items = data[key];
+  
+        const agentItem = document.createElement("div");
+  
+        // Set the content of the timeline item
+        agentItem.innerHTML = `
+          <div
+            class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold overflow-auto"
+            data-kt-menu="true"
+          >
+            <!--begin::Menu item-->
+            <div
+              class="menu-item menu-sub-indention menu-accordion"
+              data-kt-menu-trigger="click"
+            >
+              <!--begin::Menu link-->
+              <a href="#" class="menu-link py-3">
+                <span class="menu-icon">
+                  <div
+                    class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2"
+                    style="margin-left: 70px"
+                  >
+                    <!--begin::User-->
+                    <div class="symbol symbol-40px me-5">
+                      <img
+                        src="${getRandomIconUrl()}"
+                        class="h-50 align-self-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </span>
+  
+                <span class="menu-title">${key}</span>
+                <span class="menu-title">${key}</span>
+  
+                <span class="menu-arrow"></span>
+              </a>
+              <!--end::Menu link-->
+  
+              <!--begin::Menu sub-->
+              <div class="menu-sub menu-sub-accordion pt-3">
+                <!--begin::Menu item-->
+                <div class="menu-item">
+                  <div class="fv-row fv-plugins-icon-container">
+                    <!--begin::Row-->
+                    <div class="row">
+                      <!--begin::Col-->
+                      <div class="col-lg-6">
+                        <!--begin::Option-->
+                        <div class="text-muted fs-6 pb-4">Task list</div>
+                        <label>
+                          <div class="d-flex flex-column">
+                            <li class="d-flex align-items-center py-2">
+                              <span class="bullet bullet-vertical me-5"></span>Held By - ${key}
+                            </li>
+                          </div>
+                        </label>
+                        <!--end::Option-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                      </div>
+                      <!--end::Col-->
+  
+                      <!--begin::Col-->
+                      <div class="col-lg-6">
+                        <!--begin::Option-->
+                        <div class="text-muted fs-6 pb-4">Location</div>
+                        <label>
+                          <!--begin::Info-->
+                          <div class="d-flex flex-column">
+                            <li class="d-flex align-items-center py-2">
+                              <span class="bullet bullet-dot me-5"></span>
+                              ${key}
+                            </li>
+                          </div>
+                        </label>
+                        <!--end::Option-->
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                  </div>
+  
+                  <div class="tab-content">
+                    <!--begin::Menu sub-->
+                    <div class="menu-sub menu-sub-accordion pt-3">
+                      <!--begin::Menu items for timeline-->
+                      <div class="timeline">
+                        ${items
+                          .map(
+                            (item) => `<div class="timeline-item">
+                              <div class="timeline-line w-40px"></div>
+                              <div class="timeline-content mb-10 mt-n1">
+                                <div class="menu menu-rounded menu-column menu-title-gray-700 menu-icon-gray-400 menu-arrow-gray-400 menu-bullet-gray-400 menu-arrow-gray-400 menu-state-bg fw-semibold" data-kt-menu="true">
+                                  <div class="menu-item menu-sub-indention menu-accordion" data-kt-menu-trigger="click">
+                                    <a href="#" class="menu-link py-3">
+                                      <span class="menu-icon">
+                                        <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2" style="margin-left: 70px">
+                                          <div class="symbol symbol-circle symbol-25px">
+                                            <img src="${getRandomIconUrl()}" alt="img">
+                                          </div>
+                                          <div class="symbol symbol-circle symbol-25px">
+                                            <img src="${getRandomIconUrl()}" alt="img">
+                                          </div>
+                                        </div>
+                                      </span>
+                                      <span class="menu-title">${item.event_type}</span>
+                                      <span class="menu-title">${item.created_at}</span>
+                                      <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="menu-sub menu-sub-accordion pt-3">
+                                      <div class="menu-item">
+                                        <div class=" d-flex flex-column" style="width: 500px; gap: 10px">
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Description:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.description}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Message:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.message}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Created at:</strong></span>
+                                            <span class="text-gray-600 date fw-semibold">${item.created_at}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold" style="min-width: 120px"><strong>Sender:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.sender_id}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Object:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.object_id}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Target:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.target_id}</span>
+                                          </div>
+                                          <div class="d-flex">
+                                            <span class="text-gray-600 fw-semibold mb-3" style="min-width: 120px"><strong>Recipient Agent:</strong></span>
+                                            <span class="text-gray-600 fw-semibold">${item.recipient_agent_id}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>`).join("")}
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <!--end::Menu item-->
+                </div>
+                <!--end::Menu sub-->
+              </div>
+              <!--end::Menu item-->
+            </div>
+            <!--end::Menu-->
+            <!--end::Timeline details-->
+          </div>
+        </div>
+        <!--end::Menu item-->
+      </div>
+      <!--end::Card-->
+      <!--end::Menu item-->
+    </div>`;
+        <!--end::Menu-->
+  
+        // Append the new item to the card-body
+        const cardBody = document.querySelector(".card-body");
+        cardBody.appendChild(agentItem);
+  
+        const menuTrigger = agentItem.querySelector(
+          '[data-kt-menu-trigger="click"]'
+        );
+        const menu = new KTMenu(menuTrigger.parentElement);
+  
+        // Initialize nested menus within the new item
+        const nestedMenuItems = agentItem.querySelectorAll(
+          ".menu-sub .menu-item"
+        );
+        nestedMenuItems.forEach((nestedItem) => {
+          const nestedMenuTrigger = nestedItem.querySelector(
+            '[data-kt-menu-trigger="click"]'
+          );
+          const nestedMenu = new KTMenu(nestedMenuTrigger.parentElement);
+        });
+      }
+    };
+    // Reinitialize the KMenu component for all existing timeline items
+    const existingMenuItems = document.querySelectorAll(".menu-item");
+    existingMenuItems.forEach((item) => {
+      const menuTrigger = item.querySelector('[data-kt-menu-trigger="click"]');
+      const menu = new KTMenu(menuTrigger.parentElement);
+    });
+  </script>

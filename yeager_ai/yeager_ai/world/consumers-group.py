@@ -41,7 +41,10 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
             template_name = "partials/Events/agent_event.html"
             html = get_template(template_name).render(context={"grouped_events": self.grouped_events})
             await self.send(text_data=html)
-            
+            print("===================event=========================")
+            print(self.grouped_events)
+            print("===================event========================")
+                
             # Render the body HTML template for the updated grouped_events
             template_name = "partials/Events/agent_body.html"
             body_html = get_template(template_name).render(context={"grouped_events": self.grouped_events})
@@ -73,9 +76,9 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
                 template_name = "partials/Events/event.html"
                 html = get_template(template_name).render(context={"data": new_data})
                 await self.send(text_data=html)  # Send data through WebSocket
-                print("===================event=========================")
-                print(self.single_events)
-                print("===================event========================")
+                # print("===================event=========================")
+                # print(self.single_events)
+                # print("===================event========================")
                 
                 
         except Exception as e:
