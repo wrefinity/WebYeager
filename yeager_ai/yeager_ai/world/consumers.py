@@ -57,9 +57,9 @@ class FastAPIConsumer(AsyncWebsocketConsumer):
                     
                     # since it's the first time we also  need to add the body with the dta it comes with
         
-                    # template_body = "partials/Events/agent_body.html"
-                    # body_html = get_template(template_body).render(context={"group_data": new_data})
-                    # await self.send(text_data=f'<div id="body" hx-append>{body_html}</div>')
+                    template_body = "partials/Events/agent_body.html"
+                    body_html = get_template(template_body).render(context={"group_data": new_data})
+                    await self.send(text_data=f'<div id="body" hx-append>{body_html}</div>')
                     
                 # Append the new_data to the grouped_events dictionary
                 
